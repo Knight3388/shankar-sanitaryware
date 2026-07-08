@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QR Poster — Shankar Sanitaryware</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Inter", "Segoe UI", sans-serif; background: #d8e2ea;
+    display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 20px;
+  }
+  .poster {
+    width: 210mm; max-width: 100%; min-height: 285mm;
+    background: #fff; border-radius: 6px; overflow: hidden;
+    box-shadow: 0 20px 60px rgba(15,39,64,.25);
+    display: flex; flex-direction: column;
+  }
+  .head {
+    background: linear-gradient(160deg, #0f2740, #16344f 60%, #1d4a63);
+    color: #fff; padding: 34px 40px; text-align: center;
+  }
+  .brandline { display: flex; align-items: center; justify-content: center; gap: 16px; }
+  .brandline svg { width: 64px; height: 64px; }
+  h1 { font-family: "Poppins", sans-serif; font-size: 2.3rem; font-weight: 800; line-height: 1.1; }
+  h1 em {
+    font-style: normal;
+    background: linear-gradient(90deg, #f5c24b, #f0a500);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent;
+  }
+  .tag { margin-top: 10px; color: #cfe0ec; letter-spacing: .3em; text-transform: uppercase; font-size: .8rem; font-weight: 600; }
+  .body {
+    flex: 1; display: flex; flex-direction: column; align-items: center;
+    justify-content: center; padding: 40px; text-align: center;
+  }
+  .scanme { font-family: "Poppins", sans-serif; font-weight: 800; font-size: 2rem; color: #0f2740; }
+  .scanme span { color: #12707c; }
+  .hint { color: #5b6b7a; margin: 6px 0 26px; font-size: 1.05rem; }
+  .qr-frame {
+    border: 5px solid #0f2740; border-radius: 24px; padding: 22px; background: #fff;
+    position: relative;
+  }
+  .qr-frame img { width: 92mm; height: 92mm; display: block; }
+  .qr-frame .corner {
+    position: absolute; width: 26px; height: 26px; border: 5px solid #f0a500; border-radius: 4px;
+  }
+  .c1 { top: -5px; left: -5px; border-right: 0; border-bottom: 0; border-top-left-radius: 24px; }
+  .c2 { top: -5px; right: -5px; border-left: 0; border-bottom: 0; border-top-right-radius: 24px; }
+  .c3 { bottom: -5px; left: -5px; border-right: 0; border-top: 0; border-bottom-left-radius: 24px; }
+  .c4 { bottom: -5px; right: -5px; border-left: 0; border-top: 0; border-bottom-right-radius: 24px; }
+  .url { margin-top: 22px; font-weight: 600; color: #12707c; font-size: 1rem; word-break: break-all; }
+  .offer { margin-top: 18px; color: #22303d; font-size: 1.05rem; max-width: 480px; }
+  .offer b { color: #0f2740; }
+  .foot {
+    background: #f0a500; color: #0f2740; padding: 22px 40px;
+    display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+    font-weight: 600; font-size: .98rem;
+  }
+  .foot .big { font-family: "Poppins", sans-serif; font-weight: 800; font-size: 1.25rem; }
+  @media print {
+    body { background: #fff; padding: 0; }
+    .poster { box-shadow: none; border-radius: 0; width: 100%; min-height: 100vh; }
+    @page { size: A4 portrait; margin: 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="poster">
+  <div class="head">
+    <div class="brandline">
+      <svg viewBox="0 0 48 48" aria-hidden="true">
+        <defs>
+          <linearGradient id="lgBadge" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#22b8c9"/><stop offset="1" stop-color="#0f5e75"/>
+          </linearGradient>
+          <linearGradient id="lgDrop" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#ffd977"/>
+          </linearGradient>
+        </defs>
+        <rect x="2" y="2" width="44" height="44" rx="14" fill="url(#lgBadge)"/>
+        <path d="M24 8.5 C24 8.5 13.5 21.5 13.5 28.5 a10.5 10.5 0 0 0 21 0 C34.5 21.5 24 8.5 24 8.5 Z" fill="url(#lgDrop)"/>
+        <path d="M20.5 30.5 a4.5 4.5 0 0 0 4 4" fill="none" stroke="#12707c" stroke-width="2.2" stroke-linecap="round"/>
+        <circle cx="12" cy="11" r="4.5" fill="rgba(255,255,255,.28)"/>
+      </svg>
+      <h1>Shankar <em>Sanitaryware</em></h1>
+    </div>
+    <div class="tag">Tiles · Marble · Sanitaryware · Bath Fittings</div>
+  </div>
+
+  <div class="body">
+    <div class="scanme">📱 SCAN TO VISIT <span>OUR WEBSITE</span></div>
+    <p class="hint">Open your phone camera, point at the code, and tap the link</p>
+    <div class="qr-frame">
+      <span class="corner c1"></span><span class="corner c2"></span>
+      <span class="corner c3"></span><span class="corner c4"></span>
+      <img src="qr.svg" alt="QR code for the Shankar Sanitaryware website">
+    </div>
+    <div class="url">knight3388.github.io/shankar-sanitaryware</div>
+    <p class="offer">Browse our full range — <b>Morbi tiles, Kishangarh marble, Hindware &amp; Jaquar</b> — and send your enquiry directly on WhatsApp.</p>
+  </div>
+
+  <div class="foot">
+    <div class="big">📞 +91 91668 68458</div>
+    <div>📍 Police Thana Road, Shahjahanpur, Alwar — 301706</div>
+  </div>
+</div>
+
+</body>
+</html>
