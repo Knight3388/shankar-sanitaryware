@@ -127,30 +127,47 @@ try {
   .hamburger.open span:nth-child(2) { opacity: 0; }
   .hamburger.open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
 
-  /* ---------- Hero ---------- */
+  /* ---------- Hero — floating showroom collage ---------- */
   .hero {
     background:
-      linear-gradient(100deg, rgba(15,39,64,.96) 0%, rgba(22,52,79,.88) 48%, rgba(20,64,88,.55) 100%),
-      url("https://content3.jdmagicbox.com/comp/alwar/d7/9999px144.x144.130724114341.f8d7/catalogue/shankar-sanitaryware-shahjahanpur-alwar-bathroom-fitting-dealers-pf4icxqjxt.jpg") center/cover no-repeat;
-    color: #fff; padding: 80px 0 112px; position: relative; overflow: hidden;
+      radial-gradient(900px 480px at 85% -10%, rgba(27,154,170,.28), transparent 62%),
+      radial-gradient(700px 420px at -10% 110%, rgba(240,165,0,.10), transparent 60%),
+      linear-gradient(155deg, #0b1e33 0%, var(--navy) 46%, var(--navy-2) 100%);
+    color: #fff; padding: 76px 0 156px; position: relative; overflow: hidden;
   }
   .hero .wave {
     position: absolute; left: 0; right: 0; bottom: -1px; z-index: 2;
     display: block; width: 100%; height: 70px; pointer-events: none;
   }
-  .hero .bubble {
-    position: absolute; border-radius: 50%; pointer-events: none;
-    background: radial-gradient(circle, rgba(27,154,170,.30), transparent 70%);
-    animation: floaty 9s ease-in-out infinite;
+  /* faint oversized water-drop watermark (logo motif) */
+  .hero-drop {
+    position: absolute; width: 620px; height: 620px; left: 46%; top: -120px;
+    fill: rgba(34,184,201,.07); transform: rotate(10deg);
+    z-index: 0; pointer-events: none;
   }
-  .hero .b1 { width: 420px; height: 420px; right: -120px; top: -120px; }
-  .hero .b2 { width: 260px; height: 260px; left: -80px; bottom: -60px; animation-delay: -3s; background: radial-gradient(circle, rgba(240,165,0,.18), transparent 70%); }
-  .hero .b3 { width: 140px; height: 140px; right: 18%; bottom: 10%; animation-delay: -6s; }
-  @keyframes floaty {
-    0%, 100% { transform: translateY(0) scale(1); }
-    50% { transform: translateY(-24px) scale(1.05); }
+  /* slow-drifting gradient orbs */
+  .orb { position: absolute; border-radius: 50%; pointer-events: none; z-index: 0; filter: blur(6px); }
+  .orb-a {
+    width: 520px; height: 520px; top: -170px; right: -150px;
+    background: radial-gradient(circle at 35% 35%, rgba(27,154,170,.34), transparent 66%);
+    animation: orbDrift 26s ease-in-out infinite alternate;
+  }
+  .orb-b {
+    width: 360px; height: 360px; bottom: -90px; left: -130px;
+    background: radial-gradient(circle at 60% 40%, rgba(240,165,0,.20), transparent 66%);
+    animation: orbDrift 32s ease-in-out -9s infinite alternate;
+  }
+  .orb-c {
+    width: 220px; height: 220px; top: 26%; left: 40%;
+    background: radial-gradient(circle, rgba(34,184,201,.22), transparent 70%);
+    animation: orbDrift 21s ease-in-out -15s infinite alternate;
+  }
+  @keyframes orbDrift {
+    from { transform: translate(0, 0) scale(1); }
+    to { transform: translate(56px, 38px) scale(1.14); }
   }
   .hero .wrap { position: relative; z-index: 1; }
+  .hero-grid { display: grid; grid-template-columns: 1.08fr .92fr; gap: 48px; align-items: center; }
   .badge-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 18px; }
   .badge {
     background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.22);
@@ -161,10 +178,157 @@ try {
   .dot { width: 8px; height: 8px; border-radius: 50%; background: #31d07f; animation: pulse 1.6s infinite; }
   .dot.closed { background: #ff6b6b; }
   @keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(49,208,127,.5);} 55% { box-shadow: 0 0 0 7px rgba(49,208,127,0);} }
-  .hero h1 { font-size: clamp(2rem, 5vw, 3.1rem); line-height: 1.15; margin-bottom: 14px; }
+  .hero h1 { font-size: clamp(2.05rem, 4.7vw, 3.3rem); line-height: 1.13; margin-bottom: 14px; letter-spacing: -.01em; }
   .hero h1 span { color: var(--amber); }
-  .hero p.lead { max-width: 560px; color: #d5e3ee; font-size: 1.08rem; margin-bottom: 30px; }
+  /* amber underline sweep on the key word */
+  .hero h1 .key { position: relative; }
+  .hero h1 .key::after {
+    content: ""; position: absolute; left: -1%; right: -1%; bottom: .05em; height: .3em;
+    border-radius: 5px; z-index: -1; transform: scaleX(1); transform-origin: left;
+    background: linear-gradient(90deg, rgba(240,165,0,0), rgba(240,165,0,.5) 10%, rgba(240,165,0,.5) 90%, rgba(240,165,0,0));
+  }
+  @keyframes ulineSweep { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  .hero p.lead { max-width: 540px; color: #d5e3ee; font-size: 1.08rem; margin-bottom: 30px; }
   .cta-row { display: flex; gap: 14px; flex-wrap: wrap; }
+
+  /* glassy category strip — quick jump to #products */
+  .hero-cats { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 26px; }
+  .hero-cats a {
+    display: inline-flex; align-items: center; gap: 9px; min-height: 46px;
+    padding: 5px 15px 5px 6px; border-radius: 999px; color: #eaf4f9;
+    font-weight: 600; font-size: .84rem; text-decoration: none;
+    background: rgba(255,255,255,.10); border: 1px solid rgba(255,255,255,.22);
+    -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+    transition: background .25s ease, transform .25s ease, border-color .25s ease;
+  }
+  .hero-cats a:hover { background: rgba(255,255,255,.18); border-color: rgba(240,165,0,.6); transform: translateY(-2px); }
+  .hero-cats img {
+    width: 34px; height: 34px; border-radius: 50%; object-fit: cover;
+    border: 2px solid rgba(255,255,255,.85); display: block;
+  }
+
+  /* floating showroom collage */
+  .hero-collage { position: relative; height: clamp(300px, 42vw, 450px); }
+  .c-photo {
+    position: absolute; margin: 0; overflow: hidden; border-radius: 14px;
+    border: 4px solid rgba(255,255,255,.94); background: #dde7ee;
+    transform: rotate(var(--rot, 0deg));
+  }
+  .c-photo img, .c-photo video { width: 100%; height: 100%; object-fit: cover; display: block; }
+  /* storefront video tile: readability shade + location pill */
+  .c-store::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 48%;
+    background: linear-gradient(180deg, transparent, rgba(7,19,33,.66)); pointer-events: none;
+  }
+  .loc-pill {
+    position: absolute; left: 8px; bottom: 8px; z-index: 2;
+    display: inline-flex; align-items: center; gap: 6px; white-space: nowrap;
+    font-family: "Poppins", "Inter", "Segoe UI", sans-serif;
+    font-size: .62rem; font-weight: 600; letter-spacing: .03em; color: #eaf4f9;
+    background: rgba(7,19,33,.72); border: 1px solid rgba(255,255,255,.28);
+    padding: 4px 10px; border-radius: 999px;
+  }
+  .loc-dot { width: 6px; height: 6px; border-radius: 50%; background: #31d07f; animation: pulse 1.6s infinite; }
+  .c-marble {
+    width: 64%; height: 76%; top: 2%; right: 2%; --rot: 2.5deg; z-index: 1;
+    box-shadow: 0 30px 60px rgba(4,14,26,.55);
+  }
+  .c-tiles {
+    width: 44%; height: 34%; top: 0; left: 0; --rot: -5deg; z-index: 2;
+    box-shadow: 0 18px 40px rgba(4,14,26,.5);
+  }
+  .c-faucet {
+    width: 46%; height: 48%; bottom: 0; left: 4%; --rot: -3deg; z-index: 2;
+    box-shadow: 0 22px 46px rgba(4,14,26,.52);
+  }
+  @keyframes cFloatA {
+    0%, 100% { transform: rotate(var(--rot, 0deg)) translateY(0); }
+    50% { transform: rotate(var(--rot, 0deg)) translateY(-13px); }
+  }
+  @keyframes cFloatB {
+    0%, 100% { transform: rotate(var(--rot, 0deg)) translateY(0); }
+    50% { transform: rotate(var(--rot, 0deg)) translateY(-8px); }
+  }
+  @keyframes cIn {
+    from { opacity: 0; transform: rotate(var(--rot, 0deg)) translateY(28px); }
+    to { opacity: 1; transform: rotate(var(--rot, 0deg)) translateY(0); }
+  }
+  /* 4.8-star seal stamped over the collage corner */
+  .seal {
+    position: absolute; right: -12px; bottom: 15%; z-index: 3; --rot: 9deg;
+    width: 96px; height: 96px; border-radius: 50%;
+    background: linear-gradient(140deg, #f5c24b, var(--amber));
+    color: var(--navy); display: flex; flex-direction: column;
+    align-items: center; justify-content: center; text-align: center;
+    transform: rotate(var(--rot)); box-shadow: 0 14px 32px rgba(4,14,26,.5);
+    font-family: "Poppins", "Inter", "Segoe UI", sans-serif;
+  }
+  .seal::before {
+    content: ""; position: absolute; inset: 6px; border-radius: 50%;
+    border: 1.5px dashed rgba(15,39,64,.45);
+    animation: sealSpin 16s linear infinite;
+  }
+  @keyframes sealSpin { to { transform: rotate(360deg); } }
+  .seal .seal-num { font-weight: 800; font-size: 1.45rem; line-height: 1; }
+  .seal .seal-lbl { font-weight: 700; font-size: .5rem; letter-spacing: .24em; margin-top: 4px; color: rgba(15,39,64,.75); }
+
+  /* thin scrolling brand marquee along the hero bottom */
+  .hero-marquee {
+    position: absolute; left: 0; right: 0; bottom: 70px; z-index: 1;
+    overflow: hidden; padding: 8px 0; background: rgba(7,19,33,.55);
+    border-top: 1px solid rgba(255,255,255,.12); border-bottom: 1px solid rgba(255,255,255,.12);
+  }
+  .marquee-track { display: inline-flex; white-space: nowrap; animation: mqScroll 30s linear infinite; will-change: transform; }
+  .marquee-track .mq {
+    font-family: "Poppins", "Inter", "Segoe UI", sans-serif; font-weight: 600;
+    font-size: .7rem; letter-spacing: .3em; color: rgba(222,236,245,.88);
+  }
+  .marquee-track .mq i { font-style: normal; color: rgba(240,165,0,.95); }
+  @keyframes mqScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* hero entrance + underline sweep only when motion is allowed */
+  @media (prefers-reduced-motion: no-preference) {
+    .hero h1 .key::after { animation: ulineSweep .9s cubic-bezier(.65,0,.25,1) .55s both; }
+    .hero-copy > * { animation: fadeUpChild .6s ease backwards; }
+    .hero-copy > :nth-child(2) { animation-delay: .1s; }
+    .hero-copy > :nth-child(3) { animation-delay: .2s; }
+    .hero-copy > :nth-child(4) { animation-delay: .3s; }
+    .hero-copy > :nth-child(5) { animation-delay: .4s; }
+    .c-marble { animation: cIn .7s ease .25s backwards, cFloatA 8.5s ease-in-out 1.2s infinite; }
+    .c-tiles { animation: cIn .7s ease .45s backwards, cFloatB 9.5s ease-in-out 1.4s infinite; }
+    .c-faucet { animation: cIn .7s ease .6s backwards, cFloatB 7.2s ease-in-out 1.6s infinite; }
+    .seal { animation: cIn .7s ease .8s backwards; }
+  }
+
+  /* hero responsive: stack + simplify heavy effects */
+  @media (max-width: 900px) {
+    .hero { padding: 64px 0 150px; }
+    .hero-grid { grid-template-columns: 1fr; gap: 44px; }
+    .hero-collage { width: 100%; max-width: 430px; margin: 0 auto; height: min(90vw, 420px); }
+    .hero-drop { width: 480px; height: 480px; left: 32%; top: -90px; }
+  }
+  @media (max-width: 500px) {
+    .hero { padding: 48px 0 142px; }
+    .hero-collage { height: 82vw; }
+    .orb { filter: none; }
+    .orb-c { display: none; }
+    .hero-drop { width: 340px; height: 340px; left: 42%; top: -60px; }
+    .c-photo { border-width: 3px; border-radius: 12px; }
+    .c-marble { box-shadow: 0 18px 36px rgba(4,14,26,.5); }
+    .seal { width: 78px; height: 78px; right: -6px; }
+    .seal .seal-num { font-size: 1.2rem; }
+    .marquee-track .mq { font-size: .6rem; letter-spacing: .26em; }
+    /* keep the headline high: hide the brands badge (brands ride the marquee
+       and the category strip) and compact the rest */
+    .badge-brands { display: none; }
+    .badge { font-size: .74rem; padding: 5px 12px; }
+    .badge-row { margin-bottom: 14px; }
+    .hero-cats { gap: 8px; margin-top: 20px; }
+    .hero-cats a { font-size: .78rem; padding: 4px 12px 4px 5px; min-height: 44px; }
+    .hero-cats img { width: 32px; height: 32px; }
+    /* narrow video tile: keep the pill inside its frame */
+    .loc-road { display: none; }
+  }
   .btn {
     display: inline-flex; align-items: center; gap: 8px; padding: 13px 26px;
     border-radius: 10px; font-weight: 600; font-size: 1rem; border: 0; cursor: pointer;
@@ -454,7 +618,7 @@ try {
     .reveal.visible h2::after { transform: scaleX(1); }
   }
   @media (prefers-reduced-motion: reduce) {
-    .bubble, .btn.primary::after, #waFloat, .dot { animation: none; }
+    .orb, .c-photo, .seal, .seal::before, .marquee-track, .btn.primary::after, #waFloat, .dot, .loc-dot { animation: none; }
   }
 
   /* ---------- Mobile nav ---------- */
@@ -530,20 +694,53 @@ try {
 </header>
 
 <section class="hero" id="top">
-  <div class="bubble b1"></div><div class="bubble b2"></div><div class="bubble b3"></div>
-  <div class="wrap">
-    <div class="badge-row">
-      <span class="badge star">★ 4.8 Rated on Justdial</span>
-      <span class="badge">Hindware · Jaquar · Gravity</span>
-      <span class="badge">Retail &amp; Wholesale</span>
-      <span class="badge live"><span class="dot" id="heroDot"></span><span id="heroStatus">Checking hours…</span></span>
-    </div>
-    <h1>Tiles, Marble &amp; <span>Sanitaryware</span> — Under One Roof</h1>
-    <p class="lead" id="heroLead">Morbi tiles, Kishangarh marble, Hindware &amp; authorised Jaquar fittings — at honest prices.</p>
-    <div class="cta-row">
+  <svg class="hero-drop" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+    <path d="M24 8.5 C24 8.5 13.5 21.5 13.5 28.5 a10.5 10.5 0 0 0 21 0 C34.5 21.5 24 8.5 24 8.5 Z"/>
+  </svg>
+  <div class="orb orb-a"></div><div class="orb orb-b"></div><div class="orb orb-c"></div>
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <div class="badge-row">
+        <span class="badge star">★ 4.8 Rated on Justdial</span>
+        <span class="badge badge-brands">Hindware · Jaquar · Gravity</span>
+        <span class="badge">Retail &amp; Wholesale</span>
+        <span class="badge live"><span class="dot" id="heroDot"></span><span id="heroStatus">Checking hours…</span></span>
+      </div>
+      <h1>Tiles, Marble &amp; <span class="key">Sanitaryware</span> — Under One Roof</h1>
+      <p class="lead" id="heroLead">Morbi tiles, Kishangarh marble, Hindware &amp; authorised Jaquar fittings — at honest prices.</p>
+      <div class="cta-row">
         <a class="btn primary" href="tel:+919166868458">📞 Call Us</a>
-      <a class="btn whatsapp" href="https://wa.me/919166868458">💬 WhatsApp</a>
-      <a class="btn ghost" href="#contact">Visit the Store</a>
+        <a class="btn whatsapp" href="https://wa.me/919166868458">💬 WhatsApp</a>
+        <a class="btn ghost" href="#contact">Visit the Store</a>
+      </div>
+      <div class="hero-cats" role="navigation" aria-label="Popular categories">
+        <a href="#products"><img src="images/tiles.jpg" alt=""><span>Tiles</span></a>
+        <a href="#products"><img src="images/marble.jpg" alt=""><span>Marble</span></a>
+        <a href="#products"><img src="images/sanitaryware.jpg" alt=""><span>Sanitaryware</span></a>
+        <a href="#products"><img src="images/faucet.jpg" alt=""><span>Fittings</span></a>
+      </div>
+    </div>
+    <div class="hero-collage" id="heroCollage">
+      <figure class="c-photo c-marble"><img src="images/marble.jpg" alt="White Kishangarh marble slab with natural veining"></figure>
+      <figure class="c-photo c-tiles"><img src="images/tiles.jpg" alt="Designer ceramic tiles in many patterns"></figure>
+      <figure class="c-photo c-faucet c-store">
+        <video id="heroStoreVid" autoplay muted loop playsinline preload="auto"
+          aria-label="Looping video of the Shankar Sanitaryware shop front on Police Thana Road">
+          <source src="images/hero-loop.mp4" type="video/mp4">
+        </video>
+        <figcaption class="loc-pill"><span class="loc-dot" aria-hidden="true"></span>Our store<span class="loc-road">&nbsp;· Police Thana Road</span></figcaption>
+      </figure>
+      <div class="seal" aria-hidden="true"><span class="seal-num">4.8&nbsp;★</span><span class="seal-lbl">JUSTDIAL</span></div>
+    </div>
+  </div>
+  <div class="hero-marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span class="mq">MORBI TILES <i>·</i> KISHANGARH MARBLE <i>·</i> HINDWARE <i>·</i> JAQUAR <i>·</i> GRAVITY <i>·</i>&nbsp;</span>
+      <span class="mq">MORBI TILES <i>·</i> KISHANGARH MARBLE <i>·</i> HINDWARE <i>·</i> JAQUAR <i>·</i> GRAVITY <i>·</i>&nbsp;</span>
+      <span class="mq">MORBI TILES <i>·</i> KISHANGARH MARBLE <i>·</i> HINDWARE <i>·</i> JAQUAR <i>·</i> GRAVITY <i>·</i>&nbsp;</span>
+      <span class="mq">MORBI TILES <i>·</i> KISHANGARH MARBLE <i>·</i> HINDWARE <i>·</i> JAQUAR <i>·</i> GRAVITY <i>·</i>&nbsp;</span>
+      <span class="mq">MORBI TILES <i>·</i> KISHANGARH MARBLE <i>·</i> HINDWARE <i>·</i> JAQUAR <i>·</i> GRAVITY <i>·</i>&nbsp;</span>
+      <span class="mq">MORBI TILES <i>·</i> KISHANGARH MARBLE <i>·</i> HINDWARE <i>·</i> JAQUAR <i>·</i> GRAVITY <i>·</i>&nbsp;</span>
     </div>
   </div>
   <svg class="wave" viewBox="0 0 1440 70" preserveAspectRatio="none" aria-hidden="true">
@@ -785,7 +982,7 @@ try {
   /* ---------- Sticky header shadow + scroll progress + hero parallax ---------- */
   var header = $("#siteHeader");
   var progressBar = $("#scrollProgress");
-  var heroEl = $(".hero");
+  var heroCollage = $("#heroCollage");
   var motionOK = window.matchMedia("(prefers-reduced-motion: no-preference)").matches;
   var wideScreen = window.matchMedia("(min-width: 761px)").matches;
   window.addEventListener("scroll", function () {
@@ -794,11 +991,24 @@ try {
     toTop.classList.toggle("show", y > 500);
     var max = document.documentElement.scrollHeight - window.innerHeight;
     progressBar.style.transform = "scaleX(" + (max > 0 ? Math.min(y / max, 1) : 0) + ")";
-    if (motionOK && wideScreen && y < 900) {
-      heroEl.style.backgroundPosition = "50% calc(50% + " + (y * 0.18).toFixed(1) + "px)";
+    if (motionOK && wideScreen && heroCollage && y < 900) {
+      heroCollage.style.transform = "translateY(" + (y * -0.06).toFixed(1) + "px)";
     }
     highlightNav();
   }, { passive: true });
+
+  /* ---------- Hero storefront video tile (respect reduced motion) ---------- */
+  var storeVid = $("#heroStoreVid");
+  if (storeVid) {
+    storeVid.muted = true; /* belt & braces so autoplay policies allow it */
+    if (!motionOK) {
+      storeVid.removeAttribute("autoplay");
+      try { storeVid.pause(); } catch (err) {}
+    } else if (storeVid.paused) {
+      var storePlay = storeVid.play();
+      if (storePlay && storePlay.catch) { storePlay.catch(function () { /* first frame stays visible */ }); }
+    }
+  }
 
   /* ---------- Mobile menu ---------- */
   var burger = $("#hamburger"), menu = $("#navMenu");
