@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Welcome — Shankar Sanitaryware</title>
+<meta name="description" content="Shankar Sanitaryware — bathroom fittings & sanitaryware, Shahjahanpur (Alwar).">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#08121e">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    background: #08121e;
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    color: #fff; overflow: hidden;
+  }
+  .stage { position: fixed; inset: 0; }
+  video {
+    width: 100%; height: 100%; object-fit: cover;
+    filter: saturate(1.08);
+  }
+  /* Cinematic vignette + bottom gradient for text legibility */
+  .stage::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background:
+      radial-gradient(ellipse at center, transparent 55%, rgba(4, 10, 18, .55) 100%),
+      linear-gradient(to top, rgba(4, 10, 18, .75) 0%, transparent 30%);
+  }
+  .overlay {
+    position: absolute; inset: 0; z-index: 2;
+    display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
+    padding: 6vh 20px; text-align: center; pointer-events: none;
+  }
+  .brand {
+    display: flex; align-items: center; gap: 12px;
+    animation: rise 1.2s ease .3s both;
+  }
+  .brand svg.mark {
+    width: 52px; height: 52px; flex: none;
+    filter: drop-shadow(0 8px 30px rgba(27, 154, 170, .55));
+  }
+  .brand h1 { font-size: clamp(1.4rem, 4vw, 2.2rem); font-weight: 800; letter-spacing: .01em; }
+  .brand h1 em {
+    font-style: normal;
+    background: linear-gradient(90deg, #f5c24b, #f0a500, #e08e00);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent;
+  }
+  .tagline {
+    margin-top: 10px; color: #cfe0ec; font-size: clamp(.9rem, 2.4vw, 1.05rem);
+    animation: rise 1.2s ease .6s both;
+  }
+  .tagline b { color: #f0a500; }
+  @keyframes rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+
+  .controls {
+    position: absolute; top: 20px; right: 20px; z-index: 3;
+    display: flex; gap: 10px;
+  }
+  .btn {
+    pointer-events: auto; cursor: pointer; border: 1px solid rgba(255,255,255,.35);
+    background: rgba(10, 22, 36, .55); color: #fff; backdrop-filter: blur(8px);
+    padding: 10px 20px; border-radius: 999px; font: inherit; font-size: .92rem; font-weight: 600;
+    transition: background .2s ease, transform .15s ease;
+  }
+  .btn:hover { background: rgba(27, 154, 170, .65); transform: translateY(-1px); }
+
+  /* Big enter button if autoplay is blocked */
+  .enter-fallback {
+    position: absolute; inset: 0; z-index: 4; display: none;
+    align-items: center; justify-content: center;
+    background: rgba(4, 10, 18, .6); backdrop-filter: blur(4px);
+  }
+  .enter-fallback.show { display: flex; }
+  .enter-fallback button {
+    cursor: pointer; border: 0; font: inherit; font-weight: 700; font-size: 1.1rem;
+    color: #0f2740; background: linear-gradient(135deg, #f0c34e, #f0a500);
+    padding: 18px 44px; border-radius: 999px;
+    box-shadow: 0 12px 40px rgba(240, 165, 0, .45);
+    animation: throb 1.8s ease-in-out infinite;
+  }
+  @keyframes throb { 0%,100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+
+  /* Progress bar along the bottom */
+  .progress {
+    position: absolute; left: 0; bottom: 0; height: 4px; width: 0%;
+    background: linear-gradient(90deg, #1b9aaa, #f0a500); z-index: 3;
+    transition: width .25s linear;
+  }
+
+  /* Fade-out when leaving */
+  .fade { position: fixed; inset: 0; background: #08121e; opacity: 0; pointer-events: none; transition: opacity .6s ease; z-index: 10; }
+  body.leaving .fade { opacity: 1; }
+</style>
+</head>
+<body>
+
+<div class="stage">
+  <video id="introVideo" src="intro.mp4" autoplay muted playsinline preload="auto"></video>
+</div>
+
+<div class="overlay">
+  <div class="brand">
+    <svg class="mark" viewBox="0 0 48 48" aria-hidden="true">
+      <defs>
+        <linearGradient id="lgBadge" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#22b8c9"/>
+          <stop offset="1" stop-color="#0f5e75"/>
+        </linearGradient>
+        <linearGradient id="lgDrop" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#ffffff"/>
+          <stop offset="1" stop-color="#ffd977"/>
+        </linearGradient>
+      </defs>
+      <rect x="2" y="2" width="44" height="44" rx="14" fill="url(#lgBadge)"/>
+      <rect x="2" y="2" width="44" height="44" rx="14" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="1.5"/>
+      <path d="M24 8.5 C24 8.5 13.5 21.5 13.5 28.5 a10.5 10.5 0 0 0 21 0 C34.5 21.5 24 8.5 24 8.5 Z" fill="url(#lgDrop)"/>
+      <path d="M20.5 30.5 a4.5 4.5 0 0 0 4 4" fill="none" stroke="#12707c" stroke-width="2.2" stroke-linecap="round"/>
+      <circle cx="12" cy="11" r="4.5" fill="rgba(255,255,255,.28)"/>
+    </svg>
+    <h1>Shankar <em>Sanitaryware</em></h1>
+  </div>
+  <p class="tagline">Tiles · Marble · Sanitaryware · Bath Fittings · <b>Shahjahanpur, Alwar</b> · Rated 4.8 ★</p>
+</div>
+
+<div class="controls">
+  <button class="btn" id="soundBtn" title="Toggle sound">🔇 Sound</button>
+  <button class="btn" id="skipBtn">Skip Intro ›</button>
+</div>
+
+<div class="enter-fallback" id="enterFallback">
+  <button id="enterBtn">▶ &nbsp;Enter Website</button>
+</div>
+
+<div class="progress" id="progress"></div>
+<div class="fade"></div>
+
+<script>
+(function () {
+  "use strict";
+  var video = document.getElementById("introVideo"),
+      progress = document.getElementById("progress"),
+      fallback = document.getElementById("enterFallback"),
+      left = false;
+
+  function goToSite() {
+    if (left) return;
+    left = true;
+    document.body.classList.add("leaving");
+    setTimeout(function () { window.location.href = "index.html"; }, 600);
+  }
+
+  /* Redirect when the video finishes */
+  video.addEventListener("ended", goToSite);
+
+  /* Skip button + Enter/Escape keys */
+  document.getElementById("skipBtn").addEventListener("click", goToSite);
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Enter" || e.key === "Escape" || e.key === " ") goToSite();
+  });
+
+  /* Progress bar */
+  video.addEventListener("timeupdate", function () {
+    if (video.duration) progress.style.width = (video.currentTime / video.duration * 100) + "%";
+  });
+
+  /* Sound toggle (video starts muted so autoplay is allowed) */
+  document.getElementById("soundBtn").addEventListener("click", function () {
+    video.muted = !video.muted;
+    this.textContent = video.muted ? "🔇 Sound" : "🔊 Sound";
+  });
+
+  /* If the browser blocks autoplay, show a big Enter button instead */
+  var playAttempt = video.play();
+  if (playAttempt && playAttempt.catch) {
+    playAttempt.catch(function () { fallback.classList.add("show"); });
+  }
+  document.getElementById("enterBtn").addEventListener("click", function () {
+    fallback.classList.remove("show");
+    video.play().catch(goToSite);
+  });
+
+  /* Safety net: if the video errors out or stalls at the start, go straight in */
+  video.addEventListener("error", goToSite);
+  setTimeout(function () {
+    if (video.currentTime === 0 && video.paused && !fallback.classList.contains("show")) goToSite();
+  }, 6000);
+})();
+</script>
+
+</body>
+</html>

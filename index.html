@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+/* First visit in this browser session → play the video intro, then come back here */
+try {
+  if (!sessionStorage.getItem("introSeen")) {
+    sessionStorage.setItem("introSeen", "1");
+    location.replace("intro.html");
+  }
+} catch (e) { /* storage blocked — skip the intro */ }
+</script>
+<title>Shankar Sanitaryware — Tiles, Marble, Sanitaryware & Bath Fittings, Shahjahanpur (Alwar)</title>
+<meta name="description" content="Shankar Sanitaryware — one-stop store for Morbi tiles, Kishangarh marble, Hindware sanitaryware and Jaquar bath fittings on Police Thana Road, Shahjahanpur, Alwar. Retail & wholesale. Rated 4.8/5.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#0f2740">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Shankar Sanitaryware",
+  "description": "One-stop store for tiles from Morbi (Gujarat), marble from Kishangarh (Rajasthan), Hindware sanitaryware, Jaquar bath fittings and Gravity products. Retail and wholesale supply.",
+  "brand": ["Hindware", "Jaquar", "Gravity"],
+  "telephone": "+919166868458",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Police Thana Road",
+    "addressLocality": "Shahjahanpur",
+    "addressRegion": "Rajasthan",
+    "postalCode": "301706",
+    "addressCountry": "IN"
+  },
+  "geo": { "@type": "GeoCoordinates", "latitude": "27.9980402", "longitude": "76.4526846" },
+  "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "ratingCount": "4", "bestRating": "5" },
+  "openingHours": "Mo-Sa 09:30-18:30"
+}
+</script>
+<style>
+  :root {
+    --navy: #0f2740;
+    --navy-2: #16344f;
+    --aqua: #1b9aaa;
+    --aqua-dark: #12707c;
+    --amber: #f0a500;
+    --ink: #22303d;
+    --muted: #5b6b7a;
+    --bg: #f6f9fb;
+    --card: #ffffff;
+    --line: #e3ebf1;
+    --radius: 14px;
+    --shadow: 0 6px 24px rgba(15, 39, 64, .08);
+    --shadow-lg: 0 14px 40px rgba(15, 39, 64, .16);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif; color: var(--ink); background: var(--bg); line-height: 1.6; }
+  h1, h2, h3, .brand, .btn, .call-btn { font-family: "Poppins", "Inter", "Segoe UI", sans-serif; }
+  img { max-width: 100%; display: block; }
+  a { color: var(--aqua-dark); text-decoration: none; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+
+  /* ---------- Header ---------- */
+  header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(15, 39, 64, .85); backdrop-filter: blur(10px);
+    color: #fff; transition: box-shadow .3s ease, background .3s ease;
+  }
+  header.scrolled { background: rgba(15, 39, 64, .98); box-shadow: 0 4px 20px rgba(0,0,0,.25); }
+  .nav { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; gap: 16px; }
+  .brand { display: flex; align-items: center; gap: 12px; color: #fff; }
+  .brand svg.mark {
+    width: 42px; height: 42px; flex: none;
+    filter: drop-shadow(0 4px 12px rgba(27, 154, 170, .45));
+    transition: transform .3s ease;
+  }
+  .brand:hover svg.mark { transform: rotate(-8deg) scale(1.07); }
+  .brand-text { display: flex; flex-direction: column; line-height: 1.15; }
+  .brand-name { font-weight: 800; font-size: 1.18rem; letter-spacing: .01em; white-space: nowrap; }
+  .brand-name em {
+    font-style: normal;
+    background: linear-gradient(90deg, #f5c24b, var(--amber), #e08e00);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent;
+  }
+  .brand-tag {
+    font-size: .6rem; font-weight: 600; letter-spacing: .28em;
+    color: #8fb8cc; text-transform: uppercase; margin-top: 2px;
+  }
+  nav ul { display: flex; list-style: none; gap: 22px; }
+  nav a { color: #cfe0ec; font-size: .95rem; padding: 6px 2px; position: relative; }
+  nav a::after {
+    content: ""; position: absolute; left: 0; bottom: 0; height: 2px; width: 0;
+    background: var(--amber); transition: width .25s ease;
+  }
+  nav a:hover, nav a.active { color: #fff; }
+  nav a.active::after, nav a:hover::after { width: 100%; }
+  .call-btn {
+    background: var(--amber); color: var(--navy); font-weight: 700;
+    padding: 9px 18px; border-radius: 999px; white-space: nowrap; font-size: .92rem;
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+  .call-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(240,165,0,.4); }
+  .hamburger {
+    display: none; background: none; border: 0; cursor: pointer; padding: 6px;
+    flex-direction: column; gap: 5px;
+  }
+  .hamburger span { width: 24px; height: 2.5px; background: #fff; border-radius: 2px; transition: transform .3s ease, opacity .3s ease; }
+  .hamburger.open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    background:
+      linear-gradient(160deg, rgba(15,39,64,.94) 0%, rgba(22,52,79,.90) 55%, rgba(20,64,88,.86) 100%),
+      url("https://content3.jdmagicbox.com/comp/alwar/d7/9999px144.x144.130724114341.f8d7/catalogue/shankar-sanitaryware-shahjahanpur-alwar-bathroom-fitting-dealers-pf4icxqjxt.jpg") center/cover no-repeat;
+    color: #fff; padding: 96px 0 130px; position: relative; overflow: hidden;
+  }
+  .hero .wave {
+    position: absolute; left: 0; right: 0; bottom: -1px; z-index: 2;
+    display: block; width: 100%; height: 70px; pointer-events: none;
+  }
+  .hero .bubble {
+    position: absolute; border-radius: 50%; pointer-events: none;
+    background: radial-gradient(circle, rgba(27,154,170,.30), transparent 70%);
+    animation: floaty 9s ease-in-out infinite;
+  }
+  .hero .b1 { width: 420px; height: 420px; right: -120px; top: -120px; }
+  .hero .b2 { width: 260px; height: 260px; left: -80px; bottom: -60px; animation-delay: -3s; background: radial-gradient(circle, rgba(240,165,0,.18), transparent 70%); }
+  .hero .b3 { width: 140px; height: 140px; right: 18%; bottom: 10%; animation-delay: -6s; }
+  @keyframes floaty {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-24px) scale(1.05); }
+  }
+  .hero .wrap { position: relative; z-index: 1; }
+  .badge-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 18px; }
+  .badge {
+    background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.22);
+    padding: 5px 14px; border-radius: 999px; font-size: .82rem; letter-spacing: .02em;
+  }
+  .badge.star { background: var(--amber); color: var(--navy); border: none; font-weight: 700; }
+  .badge.live { display: inline-flex; align-items: center; gap: 7px; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: #31d07f; animation: pulse 1.6s infinite; }
+  .dot.closed { background: #ff6b6b; }
+  @keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(49,208,127,.5);} 55% { box-shadow: 0 0 0 7px rgba(49,208,127,0);} }
+  .hero h1 { font-size: clamp(2rem, 5vw, 3.1rem); line-height: 1.15; margin-bottom: 14px; }
+  .hero h1 span { color: var(--amber); }
+  .hero p.lead { max-width: 560px; color: #d5e3ee; font-size: 1.08rem; margin-bottom: 30px; }
+  .cta-row { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px; padding: 13px 26px;
+    border-radius: 10px; font-weight: 600; font-size: 1rem; border: 0; cursor: pointer;
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+  .btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+  .btn.primary {
+    background: linear-gradient(135deg, #f5c24b, var(--amber)); color: var(--navy);
+    box-shadow: 0 8px 26px rgba(240,165,0,.38); position: relative; overflow: hidden;
+  }
+  .btn.primary::after {
+    content: ""; position: absolute; top: 0; bottom: 0; width: 40%; left: -60%;
+    background: linear-gradient(105deg, transparent, rgba(255,255,255,.55), transparent);
+    transform: skewX(-20deg); animation: shimmer 3.2s ease-in-out infinite;
+  }
+  @keyframes shimmer { 0%, 60% { left: -60%; } 100% { left: 130%; } }
+  .btn.ghost { background: rgba(255,255,255,.06); color: #fff; border: 1.5px solid rgba(255,255,255,.5); backdrop-filter: blur(4px); }
+  .btn.whatsapp { background: linear-gradient(135deg, #2fe376, #1fb958); color: #fff; box-shadow: 0 8px 26px rgba(37,211,102,.35); }
+
+  /* ---------- Sections & reveal animation ---------- */
+  section { padding: 64px 0; }
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+  .kicker { color: var(--aqua-dark); font-weight: 700; text-transform: uppercase; letter-spacing: .12em; font-size: .78rem; }
+  h2 { font-size: clamp(1.5rem, 3.4vw, 2.1rem); color: var(--navy); margin: 6px 0 14px; }
+  .sub { color: var(--muted); max-width: 640px; margin-bottom: 34px; }
+
+  /* ---------- Stats ---------- */
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 18px; margin-top: 30px; }
+  .stat { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow); text-align: center; transition: transform .2s ease; }
+  .stat:hover { transform: translateY(-4px); }
+  .stat .num { font-size: 1.7rem; font-weight: 800; color: var(--navy); }
+  .stat .lbl { color: var(--muted); font-size: .9rem; }
+
+  /* ---------- Products ---------- */
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+  .card {
+    background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 26px 22px; box-shadow: var(--shadow);
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+  .card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: var(--aqua); }
+  .card .icon {
+    width: 48px; height: 48px; border-radius: 12px; display: grid; place-items: center;
+    background: linear-gradient(135deg, #e2f4f6, #fdf1d7); font-size: 1.4rem; margin-bottom: 14px;
+    transition: transform .25s ease;
+  }
+  .card:hover .icon { transform: scale(1.12) rotate(-6deg); }
+  .card h3 { color: var(--navy); font-size: 1.08rem; margin-bottom: 6px; }
+  .card p { color: var(--muted); font-size: .93rem; }
+
+  /* ---------- Gallery + lightbox ---------- */
+  .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+  .gallery figure {
+    border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow);
+    aspect-ratio: 4/3; background: #dde7ee; cursor: zoom-in; position: relative;
+  }
+  .gallery figure::after {
+    content: "🔍"; position: absolute; inset: 0; display: grid; place-items: center;
+    font-size: 1.6rem; background: rgba(15,39,64,.35); opacity: 0; transition: opacity .25s ease;
+  }
+  .gallery figure:hover::after { opacity: 1; }
+  .gallery img { width: 100%; height: 100%; object-fit: cover; transition: transform .35s ease; }
+  .gallery figure:hover img { transform: scale(1.07); }
+  .lightbox {
+    position: fixed; inset: 0; z-index: 200; background: rgba(8, 18, 30, .92);
+    display: none; align-items: center; justify-content: center; padding: 4vh 4vw;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox img { max-width: 92vw; max-height: 84vh; border-radius: 10px; box-shadow: 0 20px 60px rgba(0,0,0,.5); }
+  .lightbox button {
+    position: absolute; background: rgba(255,255,255,.12); color: #fff; border: 1px solid rgba(255,255,255,.3);
+    border-radius: 50%; width: 46px; height: 46px; font-size: 1.2rem; cursor: pointer; transition: background .2s;
+  }
+  .lightbox button:hover { background: rgba(255,255,255,.28); }
+  .lb-close { top: 18px; right: 18px; }
+  .lb-prev { left: 14px; top: 50%; transform: translateY(-50%); }
+  .lb-next { right: 14px; top: 50%; transform: translateY(-50%); }
+  .lb-count { position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%); color: #cfe0ec; font-size: .9rem; }
+
+  /* ---------- Review ---------- */
+  .review-band { background: linear-gradient(160deg, var(--navy), var(--navy-2)); color: #fff; }
+  .review-band h2 { color: #fff; }
+  .review-card {
+    background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.15);
+    border-radius: var(--radius); padding: 28px; max-width: 720px;
+  }
+  .stars { color: var(--amber); font-size: 1.25rem; letter-spacing: 3px; margin-bottom: 10px; }
+  .review-card p { color: #dbe7f0; font-style: italic; }
+  .review-card .src { margin-top: 12px; font-size: .85rem; color: #9fb6c8; font-style: normal; }
+
+  /* ---------- Contact ---------- */
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; align-items: start; }
+  @media (max-width: 800px) { .contact-grid { grid-template-columns: 1fr; } }
+  .info-list { list-style: none; display: grid; gap: 16px; }
+  .info-list li { display: flex; gap: 14px; align-items: flex-start; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 18px; box-shadow: var(--shadow); }
+  .info-list .ico { font-size: 1.3rem; flex: none; margin-top: 2px; }
+  .info-list b { color: var(--navy); display: block; }
+  .info-list span { color: var(--muted); font-size: .95rem; }
+  .status-pill {
+    display: inline-flex; align-items: center; gap: 7px; margin-top: 4px;
+    font-size: .82rem; font-weight: 700; padding: 3px 12px; border-radius: 999px;
+  }
+  .status-pill.open { background: #e2f8ec; color: #157347; }
+  .status-pill.closed { background: #fdeaea; color: #b02a37; }
+  .map-box { border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); border: 1px solid var(--line); min-height: 320px; }
+  .map-box iframe { width: 100%; height: 100%; min-height: 320px; border: 0; }
+
+  table.hours { width: 100%; border-collapse: collapse; font-size: .95rem; }
+  table.hours td { padding: 6px 0; color: var(--muted); }
+  table.hours td:last-child { text-align: right; color: var(--ink); font-weight: 600; }
+  table.hours tr.today td { color: var(--aqua-dark); font-weight: 700; }
+
+  /* ---------- Enquiry form ---------- */
+  .enquiry { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); padding: 26px; margin-top: 26px; }
+  .enquiry h3 { color: var(--navy); margin-bottom: 4px; }
+  .enquiry p.hint { color: var(--muted); font-size: .9rem; margin-bottom: 18px; }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 640px) { .form-grid { grid-template-columns: 1fr; } }
+  .field { display: flex; flex-direction: column; gap: 5px; }
+  .field.full { grid-column: 1 / -1; }
+  .field label { font-size: .85rem; font-weight: 600; color: var(--navy); }
+  .field input, .field select, .field textarea {
+    padding: 11px 13px; border: 1.5px solid var(--line); border-radius: 9px;
+    font: inherit; color: var(--ink); background: #fbfdfe; outline: none;
+    transition: border-color .2s ease, box-shadow .2s ease;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus {
+    border-color: var(--aqua); box-shadow: 0 0 0 3px rgba(27,154,170,.15);
+  }
+  .field .err { color: #b02a37; font-size: .8rem; display: none; }
+  .field.invalid input, .field.invalid textarea { border-color: #dc3545; }
+  .field.invalid .err { display: block; }
+  .form-note { font-size: .85rem; color: var(--muted); margin-top: 10px; }
+
+  /* ---------- Back to top & toast ---------- */
+  #toTop {
+    position: fixed; right: 22px; bottom: 22px; z-index: 90;
+    width: 48px; height: 48px; border-radius: 50%; border: 0; cursor: pointer;
+    background: var(--navy); color: #fff; font-size: 1.2rem; box-shadow: var(--shadow-lg);
+    opacity: 0; pointer-events: none; transform: translateY(12px);
+    transition: opacity .3s ease, transform .3s ease, background .2s ease;
+  }
+  #toTop.show { opacity: 1; pointer-events: auto; transform: none; }
+  #toTop:hover { background: var(--aqua-dark); }
+  #toast {
+    position: fixed; left: 50%; bottom: 26px; transform: translateX(-50%) translateY(20px);
+    background: var(--navy); color: #fff; padding: 12px 22px; border-radius: 10px;
+    box-shadow: var(--shadow-lg); font-size: .93rem; opacity: 0; pointer-events: none;
+    transition: opacity .3s ease, transform .3s ease; z-index: 300; max-width: 90vw; text-align: center;
+  }
+  #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  /* ---------- Trust strip (inspired by "Why Gravity") ---------- */
+  .trust { padding: 0; position: relative; z-index: 3; margin-top: -36px; }
+  .trust .wrap { display: grid; grid-template-columns: repeat(auto-fit, minmax(215px, 1fr)); gap: 14px; }
+  .t-item {
+    background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+    box-shadow: var(--shadow); padding: 16px 18px; display: flex; gap: 12px; align-items: center;
+    transition: transform .2s ease;
+  }
+  .t-item:hover { transform: translateY(-3px); }
+  .t-item .t-ico { font-size: 1.6rem; flex: none; }
+  .t-item b { color: var(--navy); font-size: .93rem; display: block; line-height: 1.3; }
+  .t-item span { color: var(--muted); font-size: .8rem; }
+
+  /* ---------- Brand cards ---------- */
+  .brand-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+  .brand-card {
+    background: var(--card); border: 1px solid var(--line); border-top: 5px solid var(--bc, var(--aqua));
+    border-radius: var(--radius); padding: 28px 24px; box-shadow: var(--shadow);
+    transition: transform .25s ease, box-shadow .25s ease;
+  }
+  .brand-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+  .brand-card h3 { font-size: 1.4rem; color: var(--bc, var(--navy)); letter-spacing: .01em; }
+  .brand-card .role { font-size: .8rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin-bottom: 10px; }
+  .brand-card ul { list-style: none; margin: 12px 0 16px; display: grid; gap: 7px; color: var(--muted); font-size: .92rem; }
+  .brand-card ul li::before { content: "✓  "; color: var(--aqua-dark); font-weight: 700; }
+  .brand-card a.site { font-size: .88rem; font-weight: 600; }
+
+  /* ---------- Dealer / wholesale band ---------- */
+  .dealer-band { background: linear-gradient(135deg, #f5c24b, var(--amber)); color: var(--navy); }
+  .dealer-band h2 { color: var(--navy); }
+  .dealer-flex { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+  .dealer-flex p { max-width: 560px; color: #5b4a17; }
+  .btn.dark { background: var(--navy); color: #fff; box-shadow: 0 8px 26px rgba(15,39,64,.35); }
+
+  /* ---------- Floating WhatsApp ---------- */
+  #waFloat {
+    position: fixed; left: 22px; bottom: 22px; z-index: 90;
+    width: 56px; height: 56px; border-radius: 50%;
+    background: #25d366; color: #fff; display: grid; place-items: center;
+    font-size: 1.7rem; box-shadow: 0 10px 28px rgba(37, 211, 102, .45);
+    animation: waPulse 2.4s infinite; transition: transform .15s ease;
+  }
+  #waFloat:hover { transform: scale(1.08); }
+  @keyframes waPulse {
+    0%, 100% { box-shadow: 0 10px 28px rgba(37,211,102,.45), 0 0 0 0 rgba(37,211,102,.35); }
+    55% { box-shadow: 0 10px 28px rgba(37,211,102,.45), 0 0 0 14px rgba(37,211,102,0); }
+  }
+
+  .hero p.lead { transition: opacity .45s ease; }
+
+  footer { background: var(--navy); color: #9fb6c8; padding: 34px 0; font-size: .9rem; }
+  footer .wrap { display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
+  footer a { color: #cfe0ec; }
+
+  /* ---------- Mobile nav ---------- */
+  @media (max-width: 760px) {
+    .hamburger { display: flex; }
+    nav { position: fixed; top: 66px; right: 0; left: 0; z-index: 99; }
+    nav ul {
+      flex-direction: column; gap: 0; background: var(--navy-2);
+      max-height: 0; overflow: hidden; transition: max-height .35s ease;
+      box-shadow: 0 14px 30px rgba(0,0,0,.3);
+    }
+    nav ul.open { max-height: 320px; }
+    nav ul li a { display: block; padding: 15px 24px; border-bottom: 1px solid rgba(255,255,255,.08); }
+    nav a::after { display: none; }
+    .call-btn { font-size: .85rem; padding: 8px 14px; }
+    section { padding: 48px 0; }
+  }
+</style>
+</head>
+<body>
+
+<header id="siteHeader">
+  <div class="wrap nav">
+    <a class="brand" href="#top">
+      <svg class="mark" viewBox="0 0 48 48" aria-hidden="true">
+        <defs>
+          <linearGradient id="lgBadge" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#22b8c9"/>
+            <stop offset="1" stop-color="#0f5e75"/>
+          </linearGradient>
+          <linearGradient id="lgDrop" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#ffffff"/>
+            <stop offset="1" stop-color="#ffd977"/>
+          </linearGradient>
+        </defs>
+        <rect x="2" y="2" width="44" height="44" rx="14" fill="url(#lgBadge)"/>
+        <rect x="2" y="2" width="44" height="44" rx="14" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="1.5"/>
+        <path d="M24 8.5 C24 8.5 13.5 21.5 13.5 28.5 a10.5 10.5 0 0 0 21 0 C34.5 21.5 24 8.5 24 8.5 Z" fill="url(#lgDrop)"/>
+        <path d="M20.5 30.5 a4.5 4.5 0 0 0 4 4" fill="none" stroke="#12707c" stroke-width="2.2" stroke-linecap="round"/>
+        <circle cx="12" cy="11" r="4.5" fill="rgba(255,255,255,.28)"/>
+      </svg>
+      <span class="brand-text">
+        <span class="brand-name">Shankar <em>Sanitaryware</em></span>
+        <span class="brand-tag">Tiles · Marble · Bath</span>
+      </span>
+    </a>
+    <nav>
+      <ul id="navMenu">
+        <li><a href="#about">About</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#brands">Brands</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div style="display:flex;align-items:center;gap:12px;">
+        <a class="call-btn" href="tel:+919166868458">📞 Call Now</a>
+      <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="bubble b1"></div><div class="bubble b2"></div><div class="bubble b3"></div>
+  <div class="wrap">
+    <div class="badge-row">
+      <span class="badge star">★ 4.8 Rated on Justdial</span>
+      <span class="badge">Hindware · Jaquar · Gravity</span>
+      <span class="badge">Retail &amp; Wholesale</span>
+      <span class="badge live"><span class="dot" id="heroDot"></span><span id="heroStatus">Checking hours…</span></span>
+    </div>
+    <h1>Tiles, Marble &amp; <span>Sanitaryware</span> — Everything Your Home Needs, Under One Roof</h1>
+    <p class="lead" id="heroLead">Premium tiles straight from Morbi (Gujarat), marble from Kishangarh (Rajasthan), Hindware sanitaryware and authorised Jaquar bath fittings — at honest prices, for homeowners, contractors and dealers alike.</p>
+    <div class="cta-row">
+        <a class="btn primary" href="tel:+919166868458">📞 Call Us</a>
+      <a class="btn whatsapp" href="https://wa.me/919166868458">💬 WhatsApp</a>
+      <a class="btn ghost" href="#contact">Visit the Store</a>
+    </div>
+  </div>
+  <svg class="wave" viewBox="0 0 1440 70" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0,40 C240,80 480,0 720,25 C960,50 1200,70 1440,30 L1440,70 L0,70 Z" fill="#f6f9fb"></path>
+  </svg>
+</section>
+
+<div class="trust">
+  <div class="wrap">
+    <div class="t-item"><span class="t-ico">✅</span><div><b>100% Genuine Products</b><span>Direct from brands &amp; manufacturing hubs</span></div></div>
+    <div class="t-item"><span class="t-ico">🛡️</span><div><b>Brand Warranty</b><span>Official warranty on Hindware, Jaquar &amp; Gravity</span></div></div>
+    <div class="t-item"><span class="t-ico">🔄</span><div><b>Easy Returns</b><span>Stress-free exchange on defective pieces</span></div></div>
+    <div class="t-item"><span class="t-ico">🚚</span><div><b>Local Delivery</b><span>Doorstep delivery in &amp; around Shahjahanpur</span></div></div>
+  </div>
+</div>
+
+<section id="about">
+  <div class="wrap reveal">
+    <span class="kicker">About Us</span>
+    <h2>Your One-Stop Home Building Store in Shahjahanpur</h2>
+    <p class="sub">Shankar Sanitaryware is a complete home-materials store serving Shahjahanpur and the wider Alwar region. We source tiles directly from Morbi (Gujarat) — India's tile capital — and marble from Kishangarh (Rajasthan), Asia's biggest marble market. We stock Hindware sanitaryware, hold an authorised Jaquar dealership, and are proud selling partners of Gravity. Along with retail, we also supply to other sellers and dealers at wholesale rates.</p>
+    <div class="stats">
+      <div class="stat"><div class="num"><span class="counter" data-target="4.8" data-decimals="1">0</span> ★</div><div class="lbl">Customer Rating</div></div>
+      <div class="stat"><div class="num"><span class="counter" data-target="3">0</span>+</div><div class="lbl">Brand Partnerships — Hindware, Jaquar, Gravity</div></div>
+      <div class="stat"><div class="num"><span class="counter" data-target="2">0</span> Hubs</div><div class="lbl">Direct Sourcing — Morbi &amp; Kishangarh</div></div>
+      <div class="stat"><div class="num"><span class="counter" data-target="1000">0</span>+</div><div class="lbl">Happy Customers</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="products" style="background:#fff;">
+  <div class="wrap reveal">
+    <span class="kicker">What We Sell</span>
+    <h2>Products &amp; Range</h2>
+    <p class="sub">Everything you need to build or renovate a home — sourced from India's best manufacturing hubs, available off the shelf or on order.</p>
+    <div class="grid">
+      <div class="card"><div class="icon">🧱</div><h3>Tiles from Morbi</h3><p>Floor, wall and vitrified tiles purchased directly from Morbi, Gujarat — India's ceramic tile capital — in every size and design.</p></div>
+      <div class="card"><div class="icon">🪨</div><h3>Marble from Kishangarh</h3><p>Genuine marble sourced from Kishangarh, Rajasthan — Asia's largest marble mandi — for flooring, counters and temples.</p></div>
+      <div class="card"><div class="icon">🚽</div><h3>Hindware Sanitaryware</h3><p>Commodes, wash basins, urinals and cisterns from Hindware — trusted quality for every budget.</p></div>
+      <div class="card"><div class="icon">🚰</div><h3>Jaquar Bath Fittings</h3><p>Authorised Jaquar dealership — taps, mixers, showers and premium bathroom solutions with genuine warranty.</p></div>
+      <div class="card"><div class="icon">🚿</div><h3>Gravity Products</h3><p>Proud selling partner of Gravity — a fast-growing brand we've partnered with to bring modern, value-for-money products.</p></div>
+      <div class="card"><div class="icon">🪞</div><h3>Bathroom Accessories</h3><p>Mirrors, towel rods, soap dishes, corner shelves and complete accessory sets.</p></div>
+      <div class="card"><div class="icon">🔧</div><h3>Pipes &amp; Fittings</h3><p>CPVC/UPVC pipes, connections and all plumbing essentials for new construction and repair.</p></div>
+      <div class="card"><div class="icon">📦</div><h3>Wholesale &amp; Dealer Supply</h3><p>We supply tiles, sanitaryware and fittings to other sellers and retailers — contact us for dealer and bulk pricing.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="brands">
+  <div class="wrap reveal">
+    <span class="kicker">Our Brand Partners</span>
+    <h2>Brands We Deal In</h2>
+    <p class="sub">We work directly with India's most trusted bathroom &amp; home brands, so every product comes with genuine warranty and official support.</p>
+    <div class="brand-cards">
+      <div class="brand-card" style="--bc:#e4002b;">
+        <h3>Hindware</h3>
+        <div class="role">Sanitaryware Dealer</div>
+        <ul>
+          <li>Commodes, basins &amp; cisterns</li>
+          <li>Trusted Indian brand since 1960</li>
+          <li>Options for every budget</li>
+        </ul>
+        <a class="site" href="https://hindware.com/" target="_blank" rel="noopener">Visit hindware.com →</a>
+      </div>
+      <div class="brand-card" style="--bc:#f26f21;">
+        <h3>Jaquar</h3>
+        <div class="role">Authorised Dealership</div>
+        <ul>
+          <li>Premium taps, mixers &amp; showers</li>
+          <li>Complete bathroom solutions</li>
+          <li>Genuine Jaquar warranty</li>
+        </ul>
+        <a class="site" href="https://www.jaquar.com/" target="_blank" rel="noopener">Visit jaquar.com →</a>
+      </div>
+      <div class="brand-card" style="--bc:#12707c;">
+        <h3>Gravity Bath</h3>
+        <div class="role">Selling Partner</div>
+        <ul>
+          <li>Modern bath &amp; kitchen fittings</li>
+          <li>Up to 10 years warranty</li>
+          <li>Great value for money</li>
+        </ul>
+        <a class="site" href="https://www.gravitybath.com/" target="_blank" rel="noopener">Visit gravitybath.com →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="wrap reveal">
+    <span class="kicker">Our Store</span>
+    <h2>Inside Shankar Sanitaryware</h2>
+    <p class="sub">A glimpse of our showroom and display range — click any photo to enlarge.</p>
+    <div class="gallery" id="galleryGrid">
+      <figure><img src="https://content3.jdmagicbox.com/comp/alwar/d7/9999px144.x144.130724114341.f8d7/catalogue/shankar-sanitaryware-shahjahanpur-alwar-bathroom-fitting-dealers-aubk5v86zx.jpg" alt="Shankar Sanitaryware showroom display" loading="lazy"></figure>
+      <figure><img src="https://content3.jdmagicbox.com/comp/alwar/d7/9999px144.x144.130724114341.f8d7/catalogue/shankar-sanitaryware-shahjahanpur-alwar-bathroom-fitting-dealers-ds8iwwdcl3.jpg" alt="Store front board" loading="lazy"></figure>
+      <figure><img src="https://content3.jdmagicbox.com/comp/alwar/d7/9999px144.x144.130724114341.f8d7/catalogue/shankar-sanitaryware-shahjahanpur-alwar-bathroom-fitting-dealers-pf4icxqjxt.jpg" alt="Sanitaryware display racks" loading="lazy"></figure>
+      <figure><img src="https://content3.jdmagicbox.com/comp/alwar/d7/9999px144.x144.130724114341.f8d7/catalogue/shankar-sanitaryware-shahjahanpur-alwar-bathroom-fitting-dealers-7wv5tlw0bn.jpg" alt="Commode and basin range" loading="lazy"></figure>
+      <figure><img src="https://content3.jdmagicbox.com/comp/alwar/d7/9999px144.x144.130724114341.f8d7/catalogue/shankar-sanitaryware-shahjahanpur-alwar-bathroom-fitting-dealers-t8m1z5dtm2.jpg" alt="Bathroom fittings showroom" loading="lazy"></figure>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" role="dialog" aria-label="Photo viewer">
+  <button class="lb-close" id="lbClose" aria-label="Close">✕</button>
+  <button class="lb-prev" id="lbPrev" aria-label="Previous photo">‹</button>
+  <img id="lbImg" src="" alt="Enlarged store photo">
+  <button class="lb-next" id="lbNext" aria-label="Next photo">›</button>
+  <div class="lb-count" id="lbCount"></div>
+</div>
+
+<section class="review-band">
+  <div class="wrap reveal">
+    <span class="kicker" style="color:var(--amber)">Customer Love</span>
+    <h2>Rated 4.8 out of 5</h2>
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p>"My experience at Shankar Sanitaryware was excellent! The easy returns policy made shopping stress-free, and the quality of the products is great."</p>
+      <div class="src">— Verified customer review, Justdial</div>
+    </div>
+  </div>
+</section>
+
+<section class="dealer-band">
+  <div class="wrap reveal dealer-flex">
+    <div>
+      <span class="kicker" style="color:#7a5d10;">For Retailers &amp; Contractors</span>
+      <h2>Are You a Seller? Buy From Us at Wholesale Rates</h2>
+      <p>We supply tiles, marble, sanitaryware and fittings to shops, contractors and builders across the Alwar region. Get dealer pricing on bulk orders.</p>
+    </div>
+    <a class="btn dark" href="https://wa.me/919166868458?text=Namaste!%20I%20am%20a%20retailer%2Fcontractor%20and%20want%20to%20know%20about%20wholesale%20rates.">💬 Ask for Dealer Rates</a>
+  </div>
+</section>
+
+<section id="contact" style="background:#fff;">
+  <div class="wrap reveal">
+    <span class="kicker">Get In Touch</span>
+    <h2>Visit or Contact Us</h2>
+    <p class="sub">Walk in any day Monday to Saturday, or send us an enquiry below.</p>
+    <div class="contact-grid">
+      <div>
+        <ul class="info-list">
+          <li><span class="ico">📍</span><div><b>Address</b><span>Police Thana Road, Shahjahanpur, Alwar – 301706, Rajasthan</span>
+            <div><a href="https://maps.google.com/?q=27.9980402,76.4526846" target="_blank" rel="noopener">Open in Google Maps →</a></div></div></li>
+                <li><span class="ico">📞</span><div><b>Phone</b><span><a href="tel:+919166868458">+91 91668 68458</a></span></div></li>
+          <li><span class="ico">💬</span><div><b>WhatsApp</b><span><a href="https://wa.me/919166868458">Chat with us on WhatsApp</a></span></div></li>
+          <li><span class="ico">🕘</span><div style="flex:1"><b>Opening Hours <span class="status-pill" id="statusPill">…</span></b>
+            <table class="hours" id="hoursTable">
+              <tr data-day="1"><td>Monday</td><td>9:30 AM – 6:30 PM</td></tr>
+              <tr data-day="2"><td>Tuesday</td><td>9:30 AM – 6:30 PM</td></tr>
+              <tr data-day="3"><td>Wednesday</td><td>9:30 AM – 6:30 PM</td></tr>
+              <tr data-day="4"><td>Thursday</td><td>9:30 AM – 6:30 PM</td></tr>
+              <tr data-day="5"><td>Friday</td><td>9:30 AM – 6:30 PM</td></tr>
+              <tr data-day="6"><td>Saturday</td><td>9:30 AM – 6:30 PM</td></tr>
+              <tr data-day="0"><td>Sunday</td><td>Closed</td></tr>
+            </table>
+          </div></li>
+        </ul>
+      </div>
+      <div>
+        <div class="map-box">
+          <iframe title="Shankar Sanitaryware location map" loading="lazy"
+            src="https://maps.google.com/maps?q=27.9980402,76.4526846&z=16&output=embed"
+            allowfullscreen></iframe>
+        </div>
+        <div class="enquiry">
+          <h3>Quick Enquiry</h3>
+          <p class="hint">Fill this in and we'll open WhatsApp with your message ready to send.</p>
+          <form id="enquiryForm" novalidate>
+            <div class="form-grid">
+              <div class="field">
+                <label for="fName">Your Name *</label>
+                <input id="fName" type="text" placeholder="e.g. Ramesh Kumar" required>
+                <span class="err">Please enter your name.</span>
+              </div>
+              <div class="field">
+                <label for="fPhone">Your Phone *</label>
+                <input id="fPhone" type="tel" placeholder="10-digit mobile number" required>
+                <span class="err">Please enter a valid 10-digit mobile number.</span>
+              </div>
+              <div class="field full">
+                <label for="fItem">What are you looking for?</label>
+                <select id="fItem">
+                  <option>Tiles (Morbi — floor / wall / vitrified)</option>
+                  <option>Marble (Kishangarh)</option>
+                  <option>Hindware sanitaryware (commode / basin / cistern)</option>
+                  <option>Jaquar bath fittings (taps / showers)</option>
+                  <option>Gravity products</option>
+                  <option>Bathroom accessories</option>
+                  <option>Pipes &amp; fittings</option>
+                  <option>Wholesale / dealer / bulk order</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div class="field full">
+                <label for="fMsg">Message *</label>
+                <textarea id="fMsg" rows="3" placeholder="Tell us the item, quantity, or your question…" required></textarea>
+                <span class="err">Please write a short message.</span>
+              </div>
+            </div>
+            <div style="margin-top:16px;display:flex;gap:12px;flex-wrap:wrap;">
+              <button type="submit" class="btn whatsapp">💬 Send via WhatsApp</button>
+              <button type="button" class="btn" id="copyEnquiry" style="background:var(--line);color:var(--navy);">📋 Copy Message</button>
+            </div>
+            <p class="form-note">No data is stored — the message opens directly in your WhatsApp.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>© <span id="year"></span> Shankar Sanitaryware, Shahjahanpur (Alwar), Rajasthan. All rights reserved.</div>
+    <div>Tiles · Marble · Sanitaryware · Hindware · Jaquar · Gravity · Retail &amp; Wholesale</div>
+  </div>
+</footer>
+
+<a id="waFloat" href="https://wa.me/919166868458" target="_blank" rel="noopener" aria-label="Chat on WhatsApp" title="Chat on WhatsApp">💬</a>
+<button id="toTop" aria-label="Back to top">↑</button>
+<div id="toast" role="status"></div>
+
+<script>
+(function () {
+  "use strict";
+
+  var WHATSAPP_NUMBER = "919166868458";
+
+  var $ = function (s, c) { return (c || document).querySelector(s); };
+  var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
+
+  /* ---------- Footer year ---------- */
+  $("#year").textContent = new Date().getFullYear();
+
+  /* ---------- Sticky header shadow ---------- */
+  var header = $("#siteHeader");
+  window.addEventListener("scroll", function () {
+    header.classList.toggle("scrolled", window.scrollY > 10);
+    toTop.classList.toggle("show", window.scrollY > 500);
+    highlightNav();
+  }, { passive: true });
+
+  /* ---------- Mobile menu ---------- */
+  var burger = $("#hamburger"), menu = $("#navMenu");
+  burger.addEventListener("click", function () {
+    var open = menu.classList.toggle("open");
+    burger.classList.toggle("open", open);
+    burger.setAttribute("aria-expanded", open);
+  });
+  $$("#navMenu a").forEach(function (a) {
+    a.addEventListener("click", function () {
+      menu.classList.remove("open");
+      burger.classList.remove("open");
+      burger.setAttribute("aria-expanded", "false");
+    });
+  });
+
+  /* ---------- Active nav highlighting ---------- */
+  var sections = ["about", "products", "brands", "gallery", "contact"].map(function (id) { return document.getElementById(id); });
+  function highlightNav() {
+    var pos = window.scrollY + 140, current = "";
+    sections.forEach(function (sec) { if (sec && sec.offsetTop <= pos) current = sec.id; });
+    $$("#navMenu a").forEach(function (a) {
+      a.classList.toggle("active", a.getAttribute("href") === "#" + current);
+    });
+  }
+
+  /* ---------- Rotating hero taglines ---------- */
+  var heroLead = $("#heroLead");
+  var leads = [
+    heroLead.textContent,
+    "Redefine your home — designer tiles, elegant marble and premium bath fittings, all in one store.",
+    "Trusted by homeowners, plumbers and contractors across the Alwar region for quality at honest prices.",
+    "Retail or wholesale — from a single tap to a full truckload of tiles, we've got you covered."
+  ];
+  var leadIdx = 0;
+  setInterval(function () {
+    leadIdx = (leadIdx + 1) % leads.length;
+    heroLead.style.opacity = "0";
+    setTimeout(function () {
+      heroLead.textContent = leads[leadIdx];
+      heroLead.style.opacity = "1";
+    }, 450);
+  }, 5500);
+
+  /* ---------- Scroll-reveal animation ---------- */
+  var revealObserver = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add("visible"); revealObserver.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  $$(".reveal").forEach(function (el) { revealObserver.observe(el); });
+
+  /* ---------- Animated counters ---------- */
+  var counterObserver = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      counterObserver.unobserve(e.target);
+      var el = e.target,
+          target = parseFloat(el.dataset.target),
+          decimals = parseInt(el.dataset.decimals || "0", 10),
+          start = null, DURATION = 1400;
+      function step(ts) {
+        if (!start) start = ts;
+        var p = Math.min((ts - start) / DURATION, 1);
+        var eased = 1 - Math.pow(1 - p, 3); /* ease-out cubic */
+        el.textContent = (target * eased).toFixed(decimals);
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    });
+  }, { threshold: 0.6 });
+  $$(".counter").forEach(function (el) { counterObserver.observe(el); });
+
+  /* ---------- Live open/closed status (Mon–Sat 9:30–18:30 IST) ---------- */
+  function updateOpenStatus() {
+    var now = new Date();
+    /* Convert to IST regardless of visitor's timezone */
+    var ist = new Date(now.toLocaleString("en-US", { timeZone: "Asia/Kolkata" }));
+    var day = ist.getDay(), mins = ist.getHours() * 60 + ist.getMinutes();
+    var OPEN = 9 * 60 + 30, CLOSE = 18 * 60 + 30;
+    var isOpen = day >= 1 && day <= 6 && mins >= OPEN && mins < CLOSE;
+
+    var pill = $("#statusPill"), heroDot = $("#heroDot"), heroStatus = $("#heroStatus");
+    if (isOpen) {
+      pill.textContent = "Open now";
+      pill.className = "status-pill open";
+      heroStatus.textContent = "Open now · till 6:30 PM";
+      heroDot.classList.remove("closed");
+    } else {
+      var msg = (day === 0) ? "Closed today · opens Mon 9:30 AM"
+              : (mins < OPEN) ? "Closed · opens 9:30 AM"
+              : (day === 6) ? "Closed · opens Mon 9:30 AM"
+              : "Closed · opens 9:30 AM tomorrow";
+      pill.textContent = "Closed now";
+      pill.className = "status-pill closed";
+      heroStatus.textContent = msg;
+      heroDot.classList.add("closed");
+    }
+    /* Highlight today's row in the hours table */
+    $$("#hoursTable tr").forEach(function (tr) {
+      tr.classList.toggle("today", parseInt(tr.dataset.day, 10) === day);
+    });
+  }
+  updateOpenStatus();
+  setInterval(updateOpenStatus, 60 * 1000);
+
+  /* ---------- Gallery lightbox ---------- */
+  var lightbox = $("#lightbox"), lbImg = $("#lbImg"), lbCount = $("#lbCount");
+  var photos = $$("#galleryGrid img"), currentIdx = 0;
+  function showPhoto(i) {
+    currentIdx = (i + photos.length) % photos.length;
+    lbImg.src = photos[currentIdx].src;
+    lbImg.alt = photos[currentIdx].alt;
+    lbCount.textContent = (currentIdx + 1) + " / " + photos.length;
+  }
+  photos.forEach(function (img, i) {
+    img.parentElement.addEventListener("click", function () {
+      showPhoto(i);
+      lightbox.classList.add("open");
+      document.body.style.overflow = "hidden";
+    });
+  });
+  function closeLightbox() {
+    lightbox.classList.remove("open");
+    document.body.style.overflow = "";
+  }
+  $("#lbClose").addEventListener("click", closeLightbox);
+  $("#lbPrev").addEventListener("click", function () { showPhoto(currentIdx - 1); });
+  $("#lbNext").addEventListener("click", function () { showPhoto(currentIdx + 1); });
+  lightbox.addEventListener("click", function (e) { if (e.target === lightbox) closeLightbox(); });
+  document.addEventListener("keydown", function (e) {
+    if (!lightbox.classList.contains("open")) return;
+    if (e.key === "Escape") closeLightbox();
+    if (e.key === "ArrowLeft") showPhoto(currentIdx - 1);
+    if (e.key === "ArrowRight") showPhoto(currentIdx + 1);
+  });
+
+  /* ---------- Back to top ---------- */
+  var toTop = $("#toTop");
+  toTop.addEventListener("click", function () { window.scrollTo({ top: 0, behavior: "smooth" }); });
+
+  /* ---------- Toast ---------- */
+  var toast = $("#toast"), toastTimer;
+  function showToast(msg) {
+    toast.textContent = msg;
+    toast.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { toast.classList.remove("show"); }, 3200);
+  }
+
+  /* ---------- Enquiry form → WhatsApp ---------- */
+  var form = $("#enquiryForm");
+  function validate() {
+    var ok = true;
+    var name = $("#fName"), phone = $("#fPhone"), msg = $("#fMsg");
+    [[name, name.value.trim().length >= 2],
+     [phone, (function () {
+        var d = phone.value.replace(/\D/g, "");
+        if (d.length === 12 && d.indexOf("91") === 0) d = d.slice(2);
+        return /^[6-9]\d{9}$/.test(d);
+      })()],
+     [msg, msg.value.trim().length >= 5]
+    ].forEach(function (pair) {
+      pair[0].closest(".field").classList.toggle("invalid", !pair[1]);
+      if (!pair[1]) ok = false;
+    });
+    return ok;
+  }
+  function buildMessage() {
+    return "Namaste! Enquiry from your website:\n"
+      + "\nName: " + $("#fName").value.trim()
+      + "\nPhone: " + $("#fPhone").value.trim()
+      + "\nLooking for: " + $("#fItem").value
+      + "\nMessage: " + $("#fMsg").value.trim();
+  }
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    if (!validate()) { showToast("Please fix the highlighted fields."); return; }
+    if (WHATSAPP_NUMBER.indexOf("X") !== -1) {
+      showToast("WhatsApp number not set yet — edit WHATSAPP_NUMBER in the page code.");
+      return;
+    }
+    var url = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(buildMessage());
+    window.open(url, "_blank", "noopener");
+    showToast("Opening WhatsApp with your enquiry…");
+  });
+  $("#copyEnquiry").addEventListener("click", function () {
+    if (!validate()) { showToast("Please fix the highlighted fields."); return; }
+    navigator.clipboard.writeText(buildMessage()).then(function () {
+      showToast("Enquiry copied — paste it anywhere.");
+    }, function () {
+      showToast("Could not copy automatically — please select and copy manually.");
+    });
+  });
+  /* Clear error highlight as the user types */
+  $$("#enquiryForm input, #enquiryForm textarea").forEach(function (el) {
+    el.addEventListener("input", function () { el.closest(".field").classList.remove("invalid"); });
+  });
+})();
+</script>
+
+</body>
+</html>
