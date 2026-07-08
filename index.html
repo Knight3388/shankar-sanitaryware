@@ -372,6 +372,70 @@ try {
   footer .wrap { display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
   footer a { color: #cfe0ec; }
 
+  /* ---------- Delight layer: progress bar, stagger, sheen, accents ---------- */
+  #scrollProgress {
+    position: fixed; top: 0; left: 0; width: 100%; height: 3px; z-index: 150;
+    background: linear-gradient(90deg, var(--aqua), var(--amber));
+    transform: scaleX(0); transform-origin: left; pointer-events: none;
+  }
+  .reveal h2::after {
+    content: ""; display: block; width: 58px; height: 4px; margin-top: 10px;
+    border-radius: 2px; background: linear-gradient(90deg, var(--amber), var(--aqua));
+  }
+  .dealer-band .reveal h2::after, .dealer-band.reveal h2::after, .dealer-flex h2::after { background: var(--navy); }
+  .card { position: relative; overflow: hidden; }
+  .card::before {
+    content: ""; position: absolute; top: 0; left: -75%; width: 50%; height: 100%;
+    background: linear-gradient(105deg, transparent, rgba(255,255,255,.55), transparent);
+    transform: skewX(-20deg); pointer-events: none;
+  }
+  .card:hover::before { left: 125%; transition: left .6s ease; }
+  .card::after {
+    content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--aqua), var(--amber));
+    transform: scaleX(0); transform-origin: left; transition: transform .35s ease;
+  }
+  .card:hover::after { transform: scaleX(1); }
+  #gallery {
+    background-image:
+      linear-gradient(rgba(27,154,170,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(27,154,170,.05) 1px, transparent 1px);
+    background-size: 42px 42px;
+  }
+  @media (min-width: 761px) {
+    .gallery figure:first-child { grid-column: span 2; aspect-ratio: 8/3; }
+  }
+  footer { border-top: 3px solid var(--aqua); border-image: linear-gradient(90deg, var(--aqua), var(--amber)) 1; }
+  @keyframes fadeUpChild { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
+  @keyframes goldShift { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+  @keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal.visible .stagger > *, .stagger.reveal.visible > * { animation: fadeUpChild .6s ease backwards; }
+    .reveal.visible .stagger > :nth-child(2), .stagger.reveal.visible > :nth-child(2) { animation-delay: .08s; }
+    .reveal.visible .stagger > :nth-child(3), .stagger.reveal.visible > :nth-child(3) { animation-delay: .16s; }
+    .reveal.visible .stagger > :nth-child(4), .stagger.reveal.visible > :nth-child(4) { animation-delay: .24s; }
+    .reveal.visible .stagger > :nth-child(5), .stagger.reveal.visible > :nth-child(5) { animation-delay: .32s; }
+    .reveal.visible .stagger > :nth-child(6), .stagger.reveal.visible > :nth-child(6) { animation-delay: .4s; }
+    .reveal.visible .stagger > :nth-child(7), .stagger.reveal.visible > :nth-child(7) { animation-delay: .48s; }
+    .reveal.visible .stagger > :nth-child(8), .stagger.reveal.visible > :nth-child(8) { animation-delay: .56s; }
+    .hero h1 span {
+      background: linear-gradient(90deg, #f5c24b, var(--amber), #ffd977, var(--amber));
+      background-size: 250% 100%;
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: goldShift 5.5s ease-in-out infinite;
+    }
+    .t-item .t-ico { animation: bob 3.6s ease-in-out infinite; }
+    .t-item:nth-child(2) .t-ico { animation-delay: -.9s; }
+    .t-item:nth-child(3) .t-ico { animation-delay: -1.8s; }
+    .t-item:nth-child(4) .t-ico { animation-delay: -2.7s; }
+    .reveal h2::after { transform: scaleX(0); transform-origin: left; transition: transform .6s ease .3s; }
+    .reveal.visible h2::after { transform: scaleX(1); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .bubble, .btn.primary::after, #waFloat, .dot { animation: none; }
+  }
+
   /* ---------- Mobile nav ---------- */
   @media (max-width: 760px) {
     .hamburger { display: flex; }
@@ -390,6 +454,8 @@ try {
 </style>
 </head>
 <body>
+
+<div id="scrollProgress" aria-hidden="true"></div>
 
 <header id="siteHeader">
   <div class="wrap nav">
@@ -457,7 +523,7 @@ try {
 </section>
 
 <div class="trust">
-  <div class="wrap">
+  <div class="wrap reveal stagger">
     <div class="t-item"><span class="t-ico">✅</span><div><b>100% Genuine Products</b><span>Direct from brands &amp; manufacturing hubs</span></div></div>
     <div class="t-item"><span class="t-ico">🛡️</span><div><b>Brand Warranty</b><span>Official warranty on Hindware, Jaquar &amp; Gravity</span></div></div>
     <div class="t-item"><span class="t-ico">🔄</span><div><b>Easy Returns</b><span>Stress-free exchange on defective pieces</span></div></div>
@@ -470,7 +536,7 @@ try {
     <span class="kicker">About Us</span>
     <h2>Your One-Stop Home Building Store in Shahjahanpur</h2>
     <p class="sub">Shankar Sanitaryware is a complete home-materials store serving Shahjahanpur and the wider Alwar region. We source tiles directly from Morbi (Gujarat) — India's tile capital — and marble from Kishangarh (Rajasthan), Asia's biggest marble market. We stock Hindware sanitaryware, hold an authorised Jaquar dealership, and are proud selling partners of Gravity. Along with retail, we also supply to other sellers and dealers at wholesale rates.</p>
-    <div class="stats">
+    <div class="stats stagger">
       <div class="stat"><div class="num"><span class="counter" data-target="4.8" data-decimals="1">0</span> ★</div><div class="lbl">Customer Rating</div></div>
       <div class="stat"><div class="num"><span class="counter" data-target="3">0</span>+</div><div class="lbl">Brand Partnerships — Hindware, Jaquar, Gravity</div></div>
       <div class="stat"><div class="num"><span class="counter" data-target="2">0</span> Hubs</div><div class="lbl">Direct Sourcing — Morbi &amp; Kishangarh</div></div>
@@ -484,7 +550,7 @@ try {
     <span class="kicker">What We Sell</span>
     <h2>Products &amp; Range</h2>
     <p class="sub">Everything you need to build or renovate a home — sourced from India's best manufacturing hubs, available off the shelf or on order.</p>
-    <div class="grid">
+    <div class="grid stagger">
       <div class="card"><div class="icon">🧱</div><h3>Tiles from Morbi</h3><p>Floor, wall and vitrified tiles purchased directly from Morbi, Gujarat — India's ceramic tile capital — in every size and design.</p></div>
       <div class="card"><div class="icon">🪨</div><h3>Marble from Kishangarh</h3><p>Genuine marble sourced from Kishangarh, Rajasthan — Asia's largest marble mandi — for flooring, counters and temples.</p></div>
       <div class="card"><div class="icon">🚽</div><h3>Hindware Sanitaryware</h3><p>Commodes, wash basins, urinals and cisterns from Hindware — trusted quality for every budget.</p></div>
@@ -502,7 +568,7 @@ try {
     <span class="kicker">Our Brand Partners</span>
     <h2>Brands We Deal In</h2>
     <p class="sub">We work directly with India's most trusted bathroom &amp; home brands, so every product comes with genuine warranty and official support.</p>
-    <div class="brand-cards">
+    <div class="brand-cards stagger">
       <div class="brand-card" style="--bc:#e4002b;">
         <h3>Hindware</h3>
         <div class="role">Sanitaryware Dealer</div>
@@ -542,7 +608,7 @@ try {
     <span class="kicker">Our Store</span>
     <h2>Inside Shankar Sanitaryware</h2>
     <p class="sub">A glimpse of our showroom and display range — click any photo to enlarge.</p>
-    <div class="gallery" id="galleryGrid">
+    <div class="gallery stagger" id="galleryGrid">
       <figure><img src="https://content3.jdmagicbox.com/comp/alwar/d7/9999px144.x144.130724114341.f8d7/catalogue/shankar-sanitaryware-shahjahanpur-alwar-bathroom-fitting-dealers-aubk5v86zx.jpg" alt="Shankar Sanitaryware showroom display" loading="lazy"></figure>
       <figure><img src="https://content3.jdmagicbox.com/comp/alwar/d7/9999px144.x144.130724114341.f8d7/catalogue/shankar-sanitaryware-shahjahanpur-alwar-bathroom-fitting-dealers-ds8iwwdcl3.jpg" alt="Store front board" loading="lazy"></figure>
       <figure><img src="https://content3.jdmagicbox.com/comp/alwar/d7/9999px144.x144.130724114341.f8d7/catalogue/shankar-sanitaryware-shahjahanpur-alwar-bathroom-fitting-dealers-pf4icxqjxt.jpg" alt="Sanitaryware display racks" loading="lazy"></figure>
@@ -666,6 +732,7 @@ try {
   <div class="wrap">
     <div>© <span id="year"></span> Shankar Sanitaryware, Shahjahanpur (Alwar), Rajasthan. All rights reserved.</div>
     <div>Tiles · Marble · Sanitaryware · Hindware · Jaquar · Gravity · Retail &amp; Wholesale</div>
+    <div><a href="#top">↑ Back to top</a></div>
   </div>
 </footer>
 
@@ -685,11 +752,21 @@ try {
   /* ---------- Footer year ---------- */
   $("#year").textContent = new Date().getFullYear();
 
-  /* ---------- Sticky header shadow ---------- */
+  /* ---------- Sticky header shadow + scroll progress + hero parallax ---------- */
   var header = $("#siteHeader");
+  var progressBar = $("#scrollProgress");
+  var heroEl = $(".hero");
+  var motionOK = window.matchMedia("(prefers-reduced-motion: no-preference)").matches;
+  var wideScreen = window.matchMedia("(min-width: 761px)").matches;
   window.addEventListener("scroll", function () {
-    header.classList.toggle("scrolled", window.scrollY > 10);
-    toTop.classList.toggle("show", window.scrollY > 500);
+    var y = window.scrollY;
+    header.classList.toggle("scrolled", y > 10);
+    toTop.classList.toggle("show", y > 500);
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    progressBar.style.transform = "scaleX(" + (max > 0 ? Math.min(y / max, 1) : 0) + ")";
+    if (motionOK && wideScreen && y < 900) {
+      heroEl.style.backgroundPosition = "50% calc(50% + " + (y * 0.18).toFixed(1) + "px)";
+    }
     highlightNav();
   }, { passive: true });
 
