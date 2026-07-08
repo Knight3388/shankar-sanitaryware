@@ -130,9 +130,9 @@ try {
   /* ---------- Hero ---------- */
   .hero {
     background:
-      linear-gradient(160deg, rgba(15,39,64,.94) 0%, rgba(22,52,79,.90) 55%, rgba(20,64,88,.86) 100%),
+      linear-gradient(100deg, rgba(15,39,64,.96) 0%, rgba(22,52,79,.88) 48%, rgba(20,64,88,.55) 100%),
       url("https://content3.jdmagicbox.com/comp/alwar/d7/9999px144.x144.130724114341.f8d7/catalogue/shankar-sanitaryware-shahjahanpur-alwar-bathroom-fitting-dealers-pf4icxqjxt.jpg") center/cover no-repeat;
-    color: #fff; padding: 96px 0 130px; position: relative; overflow: hidden;
+    color: #fff; padding: 80px 0 112px; position: relative; overflow: hidden;
   }
   .hero .wave {
     position: absolute; left: 0; right: 0; bottom: -1px; z-index: 2;
@@ -192,6 +192,23 @@ try {
   h2 { font-size: clamp(1.5rem, 3.4vw, 2.1rem); color: var(--navy); margin: 6px 0 14px; }
   .sub { color: var(--muted); max-width: 640px; margin-bottom: 34px; }
 
+  /* ---------- About split layout ---------- */
+  .about-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 32px; align-items: center; }
+  .about-photo {
+    border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-lg);
+    aspect-ratio: 4/5; position: relative;
+  }
+  .about-photo img { width: 100%; height: 100%; object-fit: cover; }
+  .about-photo::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(200deg, transparent 65%, rgba(15,39,64,.35));
+    pointer-events: none;
+  }
+  @media (max-width: 800px) {
+    .about-grid { grid-template-columns: 1fr; gap: 22px; }
+    .about-photo { aspect-ratio: 16/10; }
+  }
+
   /* ---------- Stats ---------- */
   .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 18px; margin-top: 30px; }
   .stat { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow); text-align: center; transition: transform .2s ease; }
@@ -203,18 +220,19 @@ try {
   .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
   .card {
     background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
-    padding: 26px 22px; box-shadow: var(--shadow);
+    padding: 0; box-shadow: var(--shadow);
     transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
   }
   .card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: var(--aqua); }
-  .card .icon {
-    width: 48px; height: 48px; border-radius: 12px; display: grid; place-items: center;
-    background: linear-gradient(135deg, #e2f4f6, #fdf1d7); font-size: 1.4rem; margin-bottom: 14px;
-    transition: transform .25s ease;
+  .card .thumb {
+    width: 100%; aspect-ratio: 16/10; object-fit: cover; display: block;
+    background: #dde7ee; transition: transform .35s ease;
   }
-  .card:hover .icon { transform: scale(1.12) rotate(-6deg); }
-  .card h3 { color: var(--navy); font-size: 1.08rem; margin-bottom: 6px; }
-  .card p { color: var(--muted); font-size: .93rem; }
+  .card:hover .thumb { transform: scale(1.05); }
+  .card .thumb-wrap { overflow: hidden; border-radius: var(--radius) var(--radius) 0 0; }
+  .card .card-body { padding: 15px 18px 18px; }
+  .card h3 { color: var(--navy); font-size: 1.05rem; margin-bottom: 4px; }
+  .card p { color: var(--muted); font-size: .9rem; line-height: 1.45; }
 
   /* ---------- Gallery + lightbox ---------- */
   .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
@@ -295,6 +313,9 @@ try {
   .field input:focus, .field select:focus, .field textarea:focus {
     border-color: var(--aqua); box-shadow: 0 0 0 3px rgba(27,154,170,.15);
   }
+  .field select { width: 100%; min-width: 0; }
+  .contact-grid > div { min-width: 0; }
+  .info-list li > div { min-width: 0; }
   .field .err { color: #b02a37; font-size: .8rem; display: none; }
   .field.invalid input, .field.invalid textarea { border-color: #dc3545; }
   .field.invalid .err { display: block; }
@@ -451,6 +472,14 @@ try {
     .call-btn { font-size: .85rem; padding: 8px 14px; }
     section { padding: 48px 0; }
   }
+  @media (max-width: 500px) {
+    .brand svg.mark { width: 36px; height: 36px; }
+    .brand { gap: 9px; }
+    .brand-name { font-size: .96rem; }
+    .brand-tag { font-size: .52rem; letter-spacing: .22em; }
+    .call-btn .cb-txt { display: none; }
+    .call-btn { font-size: 1rem; padding: 10px 13px; line-height: 1.2; }
+  }
 </style>
 </head>
 <body>
@@ -492,7 +521,7 @@ try {
       </ul>
     </nav>
     <div style="display:flex;align-items:center;gap:12px;">
-        <a class="call-btn" href="tel:+919166868458">📞 Call Now</a>
+        <a class="call-btn" href="tel:+919166868458" aria-label="Call Shankar Sanitaryware">📞<span class="cb-txt"> Call Now</span></a>
       <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -509,8 +538,8 @@ try {
       <span class="badge">Retail &amp; Wholesale</span>
       <span class="badge live"><span class="dot" id="heroDot"></span><span id="heroStatus">Checking hours…</span></span>
     </div>
-    <h1>Tiles, Marble &amp; <span>Sanitaryware</span> — Everything Your Home Needs, Under One Roof</h1>
-    <p class="lead" id="heroLead">Premium tiles straight from Morbi (Gujarat), marble from Kishangarh (Rajasthan), Hindware sanitaryware and authorised Jaquar bath fittings — at honest prices, for homeowners, contractors and dealers alike.</p>
+    <h1>Tiles, Marble &amp; <span>Sanitaryware</span> — Under One Roof</h1>
+    <p class="lead" id="heroLead">Morbi tiles, Kishangarh marble, Hindware &amp; authorised Jaquar fittings — at honest prices.</p>
     <div class="cta-row">
         <a class="btn primary" href="tel:+919166868458">📞 Call Us</a>
       <a class="btn whatsapp" href="https://wa.me/919166868458">💬 WhatsApp</a>
@@ -533,9 +562,16 @@ try {
 
 <section id="about">
   <div class="wrap reveal">
-    <span class="kicker">About Us</span>
-    <h2>Your One-Stop Home Building Store in Shahjahanpur</h2>
-    <p class="sub">Shankar Sanitaryware is a complete home-materials store serving Shahjahanpur and the wider Alwar region. We source tiles directly from Morbi (Gujarat) — India's tile capital — and marble from Kishangarh (Rajasthan), Asia's biggest marble market. We stock Hindware sanitaryware, hold an authorised Jaquar dealership, and are proud selling partners of Gravity. Along with retail, we also supply to other sellers and dealers at wholesale rates.</p>
+    <div class="about-grid">
+      <div class="about-photo">
+        <img src="images/about-bath.jpg" alt="Premium bathroom with dark designer tiles, freestanding bathtub and rain shower" loading="lazy">
+      </div>
+      <div>
+        <span class="kicker">About Us</span>
+        <h2>Your One-Stop Home Building Store in Shahjahanpur</h2>
+        <p class="sub" style="margin-bottom:0;">Tiles direct from Morbi, marble from Kishangarh, Hindware sanitaryware, authorised Jaquar dealership and Gravity bath fittings — retail and wholesale, under one roof.</p>
+      </div>
+    </div>
     <div class="stats stagger">
       <div class="stat"><div class="num"><span class="counter" data-target="4.8" data-decimals="1">0</span> ★</div><div class="lbl">Customer Rating</div></div>
       <div class="stat"><div class="num"><span class="counter" data-target="3">0</span>+</div><div class="lbl">Brand Partnerships — Hindware, Jaquar, Gravity</div></div>
@@ -549,16 +585,16 @@ try {
   <div class="wrap reveal">
     <span class="kicker">What We Sell</span>
     <h2>Products &amp; Range</h2>
-    <p class="sub">Everything you need to build or renovate a home — sourced from India's best manufacturing hubs, available off the shelf or on order.</p>
+    <p class="sub">Everything to build or renovate — off the shelf or on order.</p>
     <div class="grid stagger">
-      <div class="card"><div class="icon">🧱</div><h3>Tiles from Morbi</h3><p>Floor, wall and vitrified tiles purchased directly from Morbi, Gujarat — India's ceramic tile capital — in every size and design.</p></div>
-      <div class="card"><div class="icon">🪨</div><h3>Marble from Kishangarh</h3><p>Genuine marble sourced from Kishangarh, Rajasthan — Asia's largest marble mandi — for flooring, counters and temples.</p></div>
-      <div class="card"><div class="icon">🚽</div><h3>Hindware Sanitaryware</h3><p>Commodes, wash basins, urinals and cisterns from Hindware — trusted quality for every budget.</p></div>
-      <div class="card"><div class="icon">🚰</div><h3>Jaquar Bath Fittings</h3><p>Authorised Jaquar dealership — taps, mixers, showers and premium bathroom solutions with genuine warranty.</p></div>
-      <div class="card"><div class="icon">🚿</div><h3>Gravity Products</h3><p>Proud selling partner of Gravity — a fast-growing brand we've partnered with to bring modern, value-for-money products.</p></div>
-      <div class="card"><div class="icon">🪞</div><h3>Bathroom Accessories</h3><p>Mirrors, towel rods, soap dishes, corner shelves and complete accessory sets.</p></div>
-      <div class="card"><div class="icon">🔧</div><h3>Pipes &amp; Fittings</h3><p>CPVC/UPVC pipes, connections and all plumbing essentials for new construction and repair.</p></div>
-      <div class="card"><div class="icon">📦</div><h3>Wholesale &amp; Dealer Supply</h3><p>We supply tiles, sanitaryware and fittings to other sellers and retailers — contact us for dealer and bulk pricing.</p></div>
+      <div class="card"><div class="thumb-wrap"><img class="thumb" src="images/tiles.jpg" alt="Designer ceramic tiles in many patterns" loading="lazy"></div><div class="card-body"><h3>Tiles from Morbi</h3><p>Floor, wall &amp; vitrified — every size &amp; design.</p></div></div>
+      <div class="card"><div class="thumb-wrap"><img class="thumb" src="images/marble.jpg" alt="White marble slab with natural veining" loading="lazy"></div><div class="card-body"><h3>Marble from Kishangarh</h3><p>Genuine marble for floors, counters &amp; temples.</p></div></div>
+      <div class="card"><div class="thumb-wrap"><img class="thumb" src="images/sanitaryware.jpg" alt="Modern bathroom with commode, basin and glass shower" loading="lazy"></div><div class="card-body"><h3>Hindware Sanitaryware</h3><p>Commodes, basins &amp; cisterns for every budget.</p></div></div>
+      <div class="card"><div class="thumb-wrap"><img class="thumb" src="images/faucet.jpg" alt="Premium chrome bath faucet" loading="lazy"></div><div class="card-body"><h3>Jaquar Bath Fittings</h3><p>Authorised dealer — taps, mixers &amp; showers.</p></div></div>
+      <div class="card"><div class="thumb-wrap"><img class="thumb" src="images/shower.jpg" alt="Rain shower head with running water" loading="lazy"></div><div class="card-body"><h3>Gravity Products</h3><p>Modern fittings with up to 10 years warranty.</p></div></div>
+      <div class="card"><div class="thumb-wrap"><img class="thumb" src="images/accessories.jpg" alt="Bathroom with towel rails, mirror and accessories" loading="lazy"></div><div class="card-body"><h3>Bathroom Accessories</h3><p>Mirrors, towel rods, shelves &amp; complete sets.</p></div></div>
+      <div class="card"><div class="thumb-wrap"><img class="thumb" src="images/pipes.jpg" alt="White PVC pipes and fittings on a wall" loading="lazy"></div><div class="card-body"><h3>Pipes &amp; Fittings</h3><p>CPVC/UPVC pipes &amp; all plumbing essentials.</p></div></div>
+      <div class="card"><div class="thumb-wrap"><img class="thumb" src="images/wholesale.jpg" alt="Warehouse racks stacked with packed stock" loading="lazy"></div><div class="card-body"><h3>Wholesale &amp; Dealer Supply</h3><p>Dealer &amp; bulk pricing for sellers and retailers.</p></div></div>
     </div>
   </div>
 </section>
@@ -567,15 +603,13 @@ try {
   <div class="wrap reveal">
     <span class="kicker">Our Brand Partners</span>
     <h2>Brands We Deal In</h2>
-    <p class="sub">We work directly with India's most trusted bathroom &amp; home brands, so every product comes with genuine warranty and official support.</p>
+    <p class="sub">Official brand partners — genuine products, genuine warranty.</p>
     <div class="brand-cards stagger">
       <div class="brand-card" style="--bc:#e4002b;">
         <h3>Hindware</h3>
         <div class="role">Sanitaryware Dealer</div>
         <ul>
-          <li>Commodes, basins &amp; cisterns</li>
-          <li>Trusted Indian brand since 1960</li>
-          <li>Options for every budget</li>
+          <li>Commodes, basins &amp; cisterns — trusted since 1960</li>
         </ul>
         <a class="site" href="https://hindware.com/" target="_blank" rel="noopener">Visit hindware.com →</a>
       </div>
@@ -583,9 +617,7 @@ try {
         <h3>Jaquar</h3>
         <div class="role">Authorised Dealership</div>
         <ul>
-          <li>Premium taps, mixers &amp; showers</li>
-          <li>Complete bathroom solutions</li>
-          <li>Genuine Jaquar warranty</li>
+          <li>Premium taps, mixers &amp; showers — genuine warranty</li>
         </ul>
         <a class="site" href="https://www.jaquar.com/" target="_blank" rel="noopener">Visit jaquar.com →</a>
       </div>
@@ -593,9 +625,7 @@ try {
         <h3>Gravity Bath</h3>
         <div class="role">Selling Partner</div>
         <ul>
-          <li>Modern bath &amp; kitchen fittings</li>
-          <li>Up to 10 years warranty</li>
-          <li>Great value for money</li>
+          <li>Modern bath fittings — up to 10 years warranty</li>
         </ul>
         <a class="site" href="https://www.gravitybath.com/" target="_blank" rel="noopener">Visit gravitybath.com →</a>
       </div>
@@ -607,7 +637,7 @@ try {
   <div class="wrap reveal">
     <span class="kicker">Our Store</span>
     <h2>Inside Shankar Sanitaryware</h2>
-    <p class="sub">A glimpse of our showroom and display range — click any photo to enlarge.</p>
+    <p class="sub">Our showroom — tap any photo to enlarge.</p>
     <div class="gallery stagger" id="galleryGrid">
       <figure><img src="https://content3.jdmagicbox.com/comp/alwar/d7/9999px144.x144.130724114341.f8d7/catalogue/shankar-sanitaryware-shahjahanpur-alwar-bathroom-fitting-dealers-aubk5v86zx.jpg" alt="Shankar Sanitaryware showroom display" loading="lazy"></figure>
       <figure><img src="https://content3.jdmagicbox.com/comp/alwar/d7/9999px144.x144.130724114341.f8d7/catalogue/shankar-sanitaryware-shahjahanpur-alwar-bathroom-fitting-dealers-ds8iwwdcl3.jpg" alt="Store front board" loading="lazy"></figure>
@@ -644,7 +674,7 @@ try {
     <div>
       <span class="kicker" style="color:#7a5d10;">For Retailers &amp; Contractors</span>
       <h2>Are You a Seller? Buy From Us at Wholesale Rates</h2>
-      <p>We supply tiles, marble, sanitaryware and fittings to shops, contractors and builders across the Alwar region. Get dealer pricing on bulk orders.</p>
+      <p>Dealer pricing on bulk orders — tiles, marble, sanitaryware &amp; fittings, across the Alwar region.</p>
     </div>
     <a class="btn dark" href="https://wa.me/919166868458?text=Namaste!%20I%20am%20a%20retailer%2Fcontractor%20and%20want%20to%20know%20about%20wholesale%20rates.">💬 Ask for Dealer Rates</a>
   </div>
@@ -654,7 +684,7 @@ try {
   <div class="wrap reveal">
     <span class="kicker">Get In Touch</span>
     <h2>Visit or Contact Us</h2>
-    <p class="sub">Walk in any day Monday to Saturday, or send us an enquiry below.</p>
+    <p class="sub">Walk in Mon–Sat, or send an enquiry below.</p>
     <div class="contact-grid">
       <div>
         <ul class="info-list">
@@ -799,9 +829,9 @@ try {
   var heroLead = $("#heroLead");
   var leads = [
     heroLead.textContent,
-    "Redefine your home — designer tiles, elegant marble and premium bath fittings, all in one store.",
-    "Trusted by homeowners, plumbers and contractors across the Alwar region for quality at honest prices.",
-    "Retail or wholesale — from a single tap to a full truckload of tiles, we've got you covered."
+    "Designer tiles, elegant marble and premium bath fittings — all in one store.",
+    "Trusted by homeowners, plumbers and contractors across the Alwar region.",
+    "Retail or wholesale — from a single tap to a full truckload of tiles."
   ];
   var leadIdx = 0;
   setInterval(function () {
